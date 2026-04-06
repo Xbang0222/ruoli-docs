@@ -1,55 +1,83 @@
-# Mintlify Starter Kit
+<p align="center">
+  <img src="logo/dark.png" alt="RuoLi" height="60" />
+</p>
 
-Use the starter kit to get your docs deployed and ready to customize.
+<p align="center">
+  <strong>RuoLi 文档</strong> — AI 模型 API 中转平台文档站
+</p>
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+<p align="center">
+  <a href="https://docs.ruoli.dev">在线文档</a> ·
+  <a href="https://ruoli.dev">控制台</a> ·
+  <a href="https://status.ruoli.dev/status/all">服务状态</a>
+</p>
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+---
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+## 关于
 
-## AI-assisted writing
+[RuoLi](https://ruoli.dev) 是一个统一的 AI 模型 API 中转平台。一个 API Key，通过 OpenAI 兼容接口访问 Claude、GPT、Gemini、Deepseek 等主流大模型。
 
-Set up your AI coding tool to work with Mintlify:
+本仓库是 RuoLi 的文档站源码，基于 [Mintlify](https://mintlify.com) 构建，支持中英双语。
+
+## 文档内容
+
+- **快速开始** — 注册账号、获取 API Key
+- **平台使用** — 模型分组、定价倍率、充值计费
+- **配置工具** — CC Switch、Claude Code、Codex、Gemini CLI、OpenCode、OpenClaw、Cherry Studio 的接入教程
+
+## 项目结构
+
+```text
+ruoli-docs/
+├── docs.json                  # Mintlify 配置
+├── index.mdx                  # 介绍（中文）
+├── quickstart.mdx             # 快速开始（中文）
+├── platform/                  # 平台使用（中文）
+│   ├── models-and-groups.mdx
+│   ├── billing.mdx
+│   └── faq.mdx
+├── tools/                     # 配置工具（中文）
+│   ├── cc-switch.mdx
+│   ├── claude-code.mdx
+│   ├── codex.mdx
+│   ├── gemini-cli.mdx
+│   ├── opencode.mdx
+│   ├── openclaw.mdx
+│   └── cherry-studio.mdx
+├── en/                        # 英文版（镜像结构）
+├── logo/                      # 品牌素材
+└── images/                    # 截图
+```
+
+## 本地开发
+
+> [!NOTE]
+> 需要 Node.js 22（LTS）。Mintlify CLI 不支持 Node 25+。
 
 ```bash
-npx skills add https://mintlify.com/docs
-```
-
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
-
-See the [AI tools guides](/ai-tools) for tool-specific setup.
-
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
 npm i -g mint
-```
-
-Run the following command at the root of your documentation, where your `docs.json` is located:
-
-```
 mint dev
 ```
 
-View your local preview at `http://localhost:3000`.
+如果默认 Node 是 25+，使用 Node 22：
 
-## Publishing changes
+```bash
+PATH="/opt/homebrew/opt/node@22/bin:$PATH" mint dev
+```
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+预览地址：[http://localhost:3000](http://localhost:3000)
 
-## Need help?
+## 发布
 
-### Troubleshooting
+推送到 `main` 分支后，通过 [Mintlify GitHub App](https://dashboard.mintlify.com/settings/organization/github-app) 自动部署。
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+## MCP 服务
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+AI 工具可通过 MCP 连接文档：
+
+```
+https://docs.ruoli.dev/mcp
+```
+
+可用工具：`search_ruoli`、`get_page_ruoli`。

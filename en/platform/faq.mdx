@@ -1,0 +1,53 @@
+---
+title: "FAQ"
+description: "Frequently asked questions about using RuoLi"
+---
+
+<AccordionGroup>
+  <Accordion title="Balance is sufficient but getting 'insufficient quota'?">
+    **Token quota** and **account balance** are separate. Each token has its own usage limit — even if your account balance is sufficient, you'll get an error when the token quota is exhausted.
+
+    Solution: Edit the token in the console to increase the quota or enable "unlimited quota".
+  </Accordion>
+
+  <Accordion title="Getting 'no available channels'?">
+    The model you requested is not in the current token's group, or all channels in that group are unavailable.
+
+    Solution: Create a new token with a group that includes the model, or try a different model.
+  </Accordion>
+
+  <Accordion title="Which group should I choose?">
+    - To save money: `free` (free) or `claude-cursor` (0.08)
+    - For large context: `claude-ant` (0.15, 1M) or `codex-team` (0.2, 1M)
+    - For official quality: `claude-officially` (1.6) or `gemini-officially` (1)
+
+    See [Models & Groups](/en/platform/models-and-groups) for details.
+  </Accordion>
+
+  <Accordion title="Request returning 401 error?">
+    - Check that the API Key is correct (watch for leading/trailing spaces)
+    - Confirm the Key hasn't been deleted or disabled
+    - Confirm the request header format: `Authorization: Bearer sk-YOUR-KEY`
+  </Accordion>
+
+  <Accordion title="What does 'multiplier' mean?">
+    The multiplier is a pricing coefficient — the lower the multiplier, the cheaper it is. For example, a multiplier of 0.1 means you pay only one-tenth of the official price. See [Models & Groups](/en/platform/models-and-groups) for details.
+  </Accordion>
+
+  <Accordion title="Which tools are supported?">
+    RuoLi is compatible with the OpenAI API format and supports all OpenAI-compatible tools, including:
+    - [Claude Code](/en/tools/claude-code)
+    - [Codex](/en/tools/codex)
+    - [Gemini CLI](/en/tools/gemini-cli)
+    - [OpenCode](/en/tools/opencode)
+    - [OpenClaw](/en/tools/openclaw)
+    - [Cherry Studio](/en/tools/cherry-studio)
+    - And any other OpenAI API-compatible tools
+  </Accordion>
+
+  <Accordion title="What is the API URL?">
+    Unified URL: `https://ruoli.dev/v1`
+
+    The exact format varies slightly by tool — see each tool's configuration page for details.
+  </Accordion>
+</AccordionGroup>

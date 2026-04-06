@@ -1,0 +1,74 @@
+---
+title: "OpenCode"
+description: "Configure RuoLi in OpenCode"
+---
+
+[OpenCode](https://opencode.ai) is an open-source AI coding agent that supports 75+ model providers.
+
+## Installation
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+Or via npm / Homebrew:
+
+```bash
+npm install -g opencode-ai@latest
+# or
+brew install anomalyco/tap/opencode
+```
+
+## Configure with CC Switch (Recommended)
+
+Open [CC Switch](https://ccswitch.lovable.app) and add a RuoLi configuration:
+
+| Field | Value |
+|-------|-------|
+| API URL | `https://ruoli.dev/v1` |
+| API Key | Your Key |
+
+Select OpenCode and click Apply.
+
+## Manual Configuration
+
+Create `opencode.json`:
+
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "claude-sonnet-4-20250514",
+  "provider": {
+    "ruoli": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "RuoLi",
+      "options": {
+        "baseURL": "https://ruoli.dev/v1",
+        "apiKey": "{env:RUOLI_API_KEY}"
+      },
+      "models": {
+        "claude-sonnet-4-20250514": {
+          "name": "Claude Sonnet 4",
+          "limit": { "context": 200000 }
+        },
+        "gpt-4o": {
+          "name": "GPT-4o",
+          "limit": { "context": 128000 }
+        }
+      }
+    }
+  }
+}
+```
+
+Set the environment variable:
+
+```bash
+export RUOLI_API_KEY=sk-YOUR-KEY
+```
+
+## Switch Models
+
+Change the `model` field in `opencode.json` to switch models. Add the models you need to the `models` section in the config file. You can also switch in CC Switch.
+
+<Info>**Official Documentation**: [opencode.ai](https://opencode.ai)</Info>

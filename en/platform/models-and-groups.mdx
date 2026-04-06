@@ -1,0 +1,67 @@
+---
+title: "Models & Groups"
+description: "Learn about RuoLi's model groups and pricing multipliers"
+---
+
+## What Are Groups
+
+RuoLi uses **groups** to organize different model channels. Each group corresponds to a different upstream API source with its own pricing multiplier.
+
+When creating a token, you need to select a group. The group determines the **pricing** and **available channels** for your API calls.
+
+<Frame>
+  <img src="/images/token-groups.png" alt="Token Group Selection" />
+</Frame>
+
+## Group List
+
+| Group | Multiplier | Description |
+|-------|------------|-------------|
+| `free` | **0** | Free group, no credits consumed |
+| `claude-cursor` | **0.08** | Cursor's Claude 2api, 200k context |
+| `claude-ant` | **0.15** | Antigravity's Claude 2api, 1M context |
+| `claude-officially` | **1.6** | Anthropic official Max |
+| `jd` | **0.1** | JD Cloud domestic models |
+| `gemini-ant` | **0.5** | Antigravity's Gemini 2api, 1M context |
+| `gemini-officially` | **1** | Gemini official API |
+| `codex-team` | **0.2** | Codex official API, 1M context |
+
+## How to Choose a Group
+
+<AccordionGroup>
+  <Accordion title="Looking for the lowest price" icon="coins">
+    Choose `free` (free) or low-multiplier groups like `claude-cursor` (0.08) or `jd` (0.1). Best for everyday use, learning, and testing.
+  </Accordion>
+  <Accordion title="Need a large context window" icon="maximize">
+    Choose groups with **1M context**: `claude-ant` (0.15), `gemini-ant` (0.5), or `codex-team` (0.2). Best for working with large codebases.
+  </Accordion>
+  <Accordion title="Need official-grade quality" icon="shield-check">
+    Choose `claude-officially` (1.6) or `gemini-officially` (1). Direct connection to the official API — highest stability and quality, but also the highest price.
+  </Accordion>
+  <Accordion title="Using Codex for coding" icon="terminal">
+    Choose `codex-team` (0.2). A channel optimized for Codex.
+  </Accordion>
+</AccordionGroup>
+
+## What Does Multiplier Mean
+
+The multiplier is a pricing coefficient applied on top of the model's official price. **The lower the multiplier, the cheaper it is.**
+
+Actual cost = **Model official price x Group multiplier**
+
+For example, if a model's official price is 10 yuan per million tokens:
+- Using `claude-officially` (multiplier 1.6): cost = 10 x 1.6 = **16 yuan**
+- Using `claude-ant` (multiplier 0.15): cost = 10 x 0.15 = **1.5 yuan**
+- Using `free` (multiplier 0): **completely free**
+
+Different models have different official prices within the same group, so the final cost varies. See [Billing & Top-Up](/en/platform/billing) for details.
+
+On the [pricing page](https://ruoli.dev/pricing) you can view the specific price for each model under different groups:
+
+<Frame>
+  <img src="/images/model-pricing.png" alt="Model Pricing" />
+</Frame>
+
+## How to Switch Groups
+
+Groups are bound to **tokens**. To switch groups, simply create a new token and select a different group.

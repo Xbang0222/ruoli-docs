@@ -1,35 +1,51 @@
 ---
-title: "Quickstart"
-description: "Start building your documentation in minutes"
+title: "Quick Start"
+description: "Sign up, get your API Key, and start in 5 minutes"
 ---
 
-## Get started in three steps
+## Step 1: Create an Account
 
-Set up a local documentation site and make your first customization.
+Go to [ruoli.dev](https://ruoli.dev) to register your account and log in.
 
-### Step 1: Set up your local environment
+## Step 2: Create an API Key (Token)
 
-<AccordionGroup>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs preview
+1. Go to the console and click the **Tokens** page
+2. Click **Add Token**
+3. Enter a token name
+4. Select a **Group** (determines the pricing multiplier — see [Models & Groups](/en/platform/models-and-groups))
+5. Select available models as needed (leave empty = all models)
+6. Click **Create** and copy the generated API Key
 
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+<Warning>The API Key is only shown once — save it immediately. If lost, you'll need to create a new one.</Warning>
 
-### Step 2: Deploy your changes
+## Step 3: Choose Your Tool
 
-<Accordion icon="github" title="Install the GitHub App">
-  Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
+Check the configuration guide for the tool you're using:
 
-  Once you push to the default branch, your changes are automatically deployed to production.
-</Accordion>
+### Coding Agents
 
-### Step 3: Go live
+<CardGroup cols={2}>
+  <Card title="Claude Code" icon="terminal" href="/en/tools/claude-code">
+    Anthropic's AI coding agent
+  </Card>
+  <Card title="Codex" icon="terminal" href="/en/tools/codex">
+    OpenAI's AI coding agent
+  </Card>
+  <Card title="Gemini CLI" icon="terminal" href="/en/tools/gemini-cli">
+    Google's AI coding agent
+  </Card>
+  <Card title="OpenCode" icon="terminal" href="/en/tools/opencode">
+    Open-source AI coding agent
+  </Card>
+  <Card title="OpenClaw" icon="terminal" href="/en/tools/openclaw">
+    Open-source personal AI assistant
+  </Card>
+</CardGroup>
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments.
-</Accordion>
+### Chat Clients
+
+<CardGroup cols={1}>
+  <Card title="Cherry Studio" icon="comments" href="/en/tools/cherry-studio">
+    Cross-platform desktop AI chat client
+  </Card>
+</CardGroup>

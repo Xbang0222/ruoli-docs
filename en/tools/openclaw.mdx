@@ -1,0 +1,56 @@
+---
+title: "OpenClaw"
+description: "Configure RuoLi in OpenClaw"
+---
+
+[OpenClaw](https://github.com/openclaw/openclaw) is an open-source personal AI assistant that supports 24+ messaging platforms including WhatsApp, Telegram, Slack, and Discord.
+
+## Installation
+
+```bash
+npm install -g openclaw@latest
+```
+
+## Configure with CC Switch (Recommended)
+
+Open [CC Switch](https://ccswitch.lovable.app) and add a RuoLi configuration:
+
+| Field | Value |
+|-------|-------|
+| API URL | `https://ruoli.dev/v1` |
+| API Key | Your Key |
+
+Select OpenClaw and click Apply.
+
+## Manual Configuration
+
+Add RuoLi to the OpenClaw configuration:
+
+```json5
+{
+  models: {
+    providers: {
+      ruoli: {
+        baseUrl: "https://ruoli.dev/v1",
+        apiKey: "sk-YOUR-KEY",
+        api: "openai",
+        models: [
+          { id: "claude-sonnet-4-20250514", contextWindow: 200000 },
+          { id: "gpt-4o", contextWindow: 128000 }
+        ]
+      }
+    }
+  },
+  agents: {
+    defaults: {
+      model: { primary: "ruoli/claude-sonnet-4-20250514" }
+    }
+  }
+}
+```
+
+## Switch Models
+
+Change the `model.primary` field in the configuration, or switch in CC Switch.
+
+<Info>**Official Documentation**: [docs.openclaw.ai](https://docs.openclaw.ai)</Info>

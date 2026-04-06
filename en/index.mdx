@@ -1,17 +1,75 @@
 ---
 title: "Introduction"
-description: "Welcome to RuoLi Docs"
+description: "Unified AI Model API Gateway"
 ---
 
-## Getting started
+RuoLi ([ruoli.dev](https://ruoli.dev)) is an AI model API gateway. One API Key, unified interface, access to Claude, GPT, Gemini, Deepseek and other mainstream large models.
 
-Get your documentation site up and running in minutes.
+## Console
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our quickstart guide to get up and running.
-</Card>
+After logging in, the console shows system notifications, usage logs, and quick access to common features:
+
+<Frame>
+  <img src="/images/console-dashboard.png" alt="RuoLi Console Dashboard" />
+</Frame>
+
+Quick access on the right side:
+
+- **Support Email** — Contact after-sales support
+- **Tutorial** — View this documentation
+- **Status Monitor** — Check real-time channel status
+
+## Models & Pricing
+
+On the [pricing page](https://ruoli.dev/pricing), filter models by provider and view input/output prices per model, with available multipliers by group:
+
+<Frame>
+  <img src="/images/model-pricing.png" alt="Model Selection and Pricing" />
+</Frame>
+
+Filter by provider (Anthropic, Google, OpenAI, etc.) and group on the left. Model-specific pricing is shown on the right.
+
+## Create Tokens
+
+When creating an API Key on the tokens page, select a group to determine the pricing multiplier:
+
+<Frame>
+  <img src="/images/token-groups.png" alt="Token Group Selection" />
+</Frame>
+
+Each group shows its multiplier and description. For example, `claude-cursor` has a 0.08x multiplier while `claude-officially` has 1.6x. Lower multiplier means cheaper.
+
+See [Models & Groups](/en/platform/models-and-groups) for details.
+
+## Service Monitoring
+
+Check real-time channel availability and status via the [status monitoring page](https://status.ruoli.dev/status/all):
+
+<Frame>
+  <img src="/images/status-monitor.png" alt="Service Status Monitor" />
+</Frame>
+
+## API Info
+
+| Item | Value |
+|------|-------|
+| API URL | `https://ruoli.dev/v1` |
+| Auth | `Authorization: Bearer sk-YOUR-KEY` |
+| Format | OpenAI Chat Completions / Responses API |
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/en/quickstart">
+    Sign up and get your API Key
+  </Card>
+  <Card title="Models & Groups" icon="layer-group" href="/en/platform/models-and-groups">
+    Choose a group and understand pricing
+  </Card>
+  <Card title="CC Switch One-Click Setup" icon="arrow-right-arrow-left" href="/en/tools/cc-switch">
+    Configure all AI tools with one click
+  </Card>
+  <Card title="Billing & Top-Up" icon="wallet" href="/en/platform/billing">
+    Billing model and how to add funds
+  </Card>
+</CardGroup>

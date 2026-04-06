@@ -1,0 +1,65 @@
+---
+title: "Gemini CLI"
+description: "在 Gemini CLI 中配置 RuoLi"
+---
+
+[Gemini CLI](https://github.com/google-gemini/gemini-cli) 是 Google 出品的开源 AI 编码代理，在终端中运行。
+
+## 安装
+
+```bash
+npm install -g @google/gemini-cli
+```
+
+或通过 Homebrew：
+
+```bash
+brew install gemini-cli
+```
+
+## 使用 CC Switch 配置（推荐）
+
+打开 [CC Switch](https://ccswitch.lovable.app)，选择顶部 **Gemini** 标签，点击 **+** 添加配置：
+
+<Frame>
+  <img src="/images/cc-switch/config.png" alt="CC Switch 配置" />
+</Frame>
+
+| 字段 | 填写内容 |
+|------|---------|
+| 供应商名称 | 自定义，如 `ruoli_gemini` |
+| API Key | 你的 Key |
+| 请求地址 | `https://ruoli.dev` |
+
+<Warning>Gemini CLI 的请求地址是 `https://ruoli.dev`，**不带** `/v1`。</Warning>
+
+## 手动配置
+
+设置环境变量：
+
+```bash
+export GOOGLE_GEMINI_BASE_URL=https://ruoli.dev
+export GEMINI_API_KEY=sk-你的KEY
+```
+
+<Tip>
+建议写入 `~/.zshrc` 或 `~/.bashrc`：
+
+```bash
+echo 'export GOOGLE_GEMINI_BASE_URL=https://ruoli.dev' >> ~/.zshrc
+echo 'export GEMINI_API_KEY=sk-你的KEY' >> ~/.zshrc
+```
+</Tip>
+
+## 切换模型
+
+启动时指定模型：
+
+```bash
+gemini --model pro
+gemini --model flash
+```
+
+或在会话中使用 `/model` 命令切换。也可以在 CC Switch 中切换模型。
+
+<Info>**官方文档**：[github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)</Info>

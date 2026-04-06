@@ -1,17 +1,75 @@
 ---
 title: "介绍"
-description: "欢迎来到 RuoLi Docs"
+description: "统一的 AI 模型 API 中转平台"
 ---
 
-## 开始使用
+RuoLi（[ruoli.dev](https://ruoli.dev)）是一个 AI 模型 API 中转平台。一个 API Key，统一接口，访问 Claude、GPT、Gemini、Deepseek 等主流大模型。
 
-几分钟内搭建并运行你的文档站点。
+## 控制台
 
-<Card
-  title="从这里开始"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  跟随快速入门指南，三步上手。
-</Card>
+登录后进入控制台，可以查看系统通知、使用日志，以及快捷访问常用功能：
+
+<Frame>
+  <img src="/images/console-dashboard.png" alt="RuoLi 控制台主界面" />
+</Frame>
+
+控制台右侧提供快捷入口：
+
+- **集群邮箱** — 联系售后支持
+- **使用教程** — 查看本文档
+- **监控站点** — 实时查看各渠道状态
+
+## 模型与定价
+
+在 [定价页面](https://ruoli.dev/pricing) 可以按供应商筛选模型，查看每个模型的输入/输出价格，以及按分组查看可用倍率：
+
+<Frame>
+  <img src="/images/model-pricing.png" alt="模型选择与定价界面" />
+</Frame>
+
+左侧可以按供应商（Anthropic、Google、OpenAI 等）和分组筛选，右侧展示每个模型的具体价格。
+
+## 创建令牌
+
+在令牌页面创建 API Key 时，选择分组决定价格倍率：
+
+<Frame>
+  <img src="/images/token-groups.png" alt="令牌分组选择界面" />
+</Frame>
+
+每个分组显示倍率和说明，例如 `claude-cursor` 为 0.08x 倍率，`claude-officially` 为 1.6x 倍率。倍率越低越便宜。
+
+详见 [模型与分组](/platform/models-and-groups)。
+
+## 服务监控
+
+通过 [状态监控页面](https://status.ruoli.dev/status/all) 实时查看各渠道的运行状况和可用性：
+
+<Frame>
+  <img src="/images/status-monitor.png" alt="服务监控站点" />
+</Frame>
+
+## API 信息
+
+| 项目 | 值 |
+|------|-----|
+| API 地址 | `https://ruoli.dev/v1` |
+| 认证方式 | `Authorization: Bearer sk-你的KEY` |
+| 兼容格式 | OpenAI Chat Completions / Responses API |
+
+## 下一步
+
+<CardGroup cols={2}>
+  <Card title="快速开始" icon="rocket" href="/quickstart">
+    注册账号，获取 API Key
+  </Card>
+  <Card title="模型与分组" icon="layer-group" href="/platform/models-and-groups">
+    选择分组，了解定价
+  </Card>
+  <Card title="CC Switch 一键配置" icon="arrow-right-arrow-left" href="/tools/cc-switch">
+    一键配置所有 AI 工具
+  </Card>
+  <Card title="充值与计费" icon="wallet" href="/platform/billing">
+    计费方式与充值
+  </Card>
+</CardGroup>

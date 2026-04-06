@@ -1,0 +1,78 @@
+---
+title: "CC Switch"
+description: "Configure all AI tools to connect to RuoLi with one click"
+---
+
+[CC Switch](https://ccswitch.lovable.app) is an AI CLI configuration management tool with a graphical interface for one-click configuration and switching of Claude Code, Codex, Gemini CLI, OpenCode, and OpenClaw API connections.
+
+## Open CC Switch
+
+Visit [ccswitch.lovable.app](https://ccswitch.lovable.app) to get started.
+
+The top tab bar lets you switch between different tools:
+
+<Frame>
+  <img src="/images/cc-switch/main.png" alt="CC Switch main interface" />
+</Frame>
+
+## Add RuoLi
+
+1. Click the **+** button in the top right to add a new configuration
+2. Fill in the provider details:
+
+<Frame>
+  <img src="/images/cc-switch/config.png" alt="CC Switch configuration" />
+</Frame>
+
+| Field | Value |
+|-------|-------|
+| Provider Name | Custom, e.g. `ruoli_claude` |
+| API Key | Your Key (get it from the Tokens page at [ruoli.dev](https://ruoli.dev)) |
+| Request URL | `https://ruoli.dev` |
+
+3. Click **Save**
+
+## Configure Model Mapping
+
+Scroll down to configure model mapping, which maps Claude Code's model aliases to the models you want to use:
+
+<Frame>
+  <img src="/images/cc-switch/models.png" alt="CC Switch model configuration" />
+</Frame>
+
+| Field | Description |
+|-------|-------------|
+| Primary Model | Default model used by Claude Code |
+| Reasoning Model (Thinking) | Model used for deep reasoning |
+| Haiku Default Model | Model used when running `/model haiku` |
+| Sonnet Default Model | Model used when running `/model sonnet` |
+| Opus Default Model | Model used when running `/model opus` |
+
+Check **Write to Global Config** to apply the configuration to all tools.
+
+## Switch Providers
+
+In the main interface, select the configuration you want to use to switch. Supports **automatic failover** — when one provider is unavailable, it automatically switches to the next one.
+
+## Import from RuoLi Dashboard
+
+On the Tokens page at [ruoli.dev](https://ruoli.dev), click **Copy Connection Info** and paste it directly into CC Switch to complete the setup.
+
+## Supported Tools
+
+| Tool | Support |
+|------|---------|
+| Claude Code | Supported |
+| Codex | Supported |
+| Gemini CLI | Supported |
+| OpenCode | Supported |
+| OpenClaw | Supported |
+
+<Tip>
+Cherry Studio does not support CC Switch. Please refer to the [Cherry Studio configuration page](/en/tools/cherry-studio) to configure it manually.
+</Tip>
+
+<Info>
+**Official Website**: [ccswitch.lovable.app](https://ccswitch.lovable.app) ·
+**GitHub**: [github.com/HoBeedzc/cc-switch](https://github.com/HoBeedzc/cc-switch)
+</Info>

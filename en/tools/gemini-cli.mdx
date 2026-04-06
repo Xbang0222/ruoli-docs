@@ -1,0 +1,62 @@
+---
+title: "Gemini CLI"
+description: "Configure RuoLi in Gemini CLI"
+---
+
+[Gemini CLI](https://github.com/google-gemini/gemini-cli) is an open-source AI coding agent by Google that runs in the terminal.
+
+## Installation
+
+```bash
+npm install -g @google/gemini-cli
+```
+
+Or via Homebrew:
+
+```bash
+brew install gemini-cli
+```
+
+## Configure with CC Switch (Recommended)
+
+Open [CC Switch](https://ccswitch.lovable.app) and add a RuoLi configuration:
+
+| Field | Value |
+|-------|-------|
+| API URL | `https://ruoli.dev` |
+| API Key | Your Key |
+
+Select Gemini CLI and click Apply.
+
+<Warning>The API URL for Gemini CLI is `https://ruoli.dev`, **without** `/v1`.</Warning>
+
+## Manual Configuration
+
+Set the environment variables:
+
+```bash
+export GOOGLE_GEMINI_BASE_URL=https://ruoli.dev
+export GEMINI_API_KEY=sk-YOUR-KEY
+```
+
+<Tip>
+It's recommended to add these to `~/.zshrc` or `~/.bashrc`:
+
+```bash
+echo 'export GOOGLE_GEMINI_BASE_URL=https://ruoli.dev' >> ~/.zshrc
+echo 'export GEMINI_API_KEY=sk-YOUR-KEY' >> ~/.zshrc
+```
+</Tip>
+
+## Switch Models
+
+Specify the model at launch:
+
+```bash
+gemini --model pro
+gemini --model flash
+```
+
+Or use the `/model` command during a session to switch. You can also switch models in CC Switch.
+
+<Info>**Official Documentation**: [github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)</Info>

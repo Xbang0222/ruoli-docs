@@ -1,0 +1,59 @@
+---
+title: "Claude Code"
+description: "Configure RuoLi in Claude Code"
+---
+
+[Claude Code](https://code.claude.com/docs) is an AI coding agent by Anthropic that reads code, edits files, and runs commands in the terminal.
+
+## Installation
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+## Configure with CC Switch (Recommended)
+
+Open [CC Switch](https://ccswitch.lovable.app) and add a RuoLi configuration:
+
+| Field | Value |
+|-------|-------|
+| API URL | `https://ruoli.dev` |
+| API Key | Your Key |
+
+Select Claude Code and click Apply.
+
+<Warning>The API URL for Claude Code is `https://ruoli.dev`, **without** `/v1`.</Warning>
+
+## Manual Configuration
+
+Edit `~/.claude/settings.json`:
+
+```json
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://ruoli.dev",
+    "ANTHROPIC_AUTH_TOKEN": "sk-YOUR-KEY"
+  }
+}
+```
+
+Or via environment variables:
+
+```bash
+export ANTHROPIC_BASE_URL=https://ruoli.dev
+export ANTHROPIC_AUTH_TOKEN=sk-YOUR-KEY
+```
+
+## Switch Models
+
+Use the `/model` command in Claude Code:
+
+```
+/model sonnet
+/model opus
+/model haiku
+```
+
+You can also switch models in CC Switch.
+
+<Info>**Official Documentation**: [code.claude.com/docs](https://code.claude.com/docs)</Info>

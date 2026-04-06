@@ -1,0 +1,67 @@
+---
+title: "模型与分组"
+description: "了解 RuoLi 的模型分组和定价倍率"
+---
+
+## 什么是分组
+
+RuoLi 通过**分组**来组织不同的模型渠道。每个分组对应不同的上游 API 来源，价格倍率也不同。
+
+创建令牌时，你需要选择一个分组。分组决定了你调用 API 时的**价格**和**可用渠道**。
+
+<Frame>
+  <img src="/images/token-groups.png" alt="令牌分组选择界面" />
+</Frame>
+
+## 分组列表
+
+| 分组 | 倍率 | 说明 |
+|------|------|------|
+| `free` | **0** | 免费分组，不消耗额度 |
+| `claude-cursor` | **0.08** | Cursor 的 Claude 2api，200k 上下文 |
+| `claude-ant` | **0.15** | Antigravity 的 Claude 2api，1M 上下文 |
+| `claude-officially` | **1.6** | Anthropic 官方 Max |
+| `jd` | **0.1** | 京东云国产模型 |
+| `gemini-ant` | **0.5** | Antigravity 的 Gemini 2api，1M 上下文 |
+| `gemini-officially` | **1** | Gemini 官方 api |
+| `codex-team` | **0.2** | Codex 官方 api，1M 上下文 |
+
+## 怎么选分组
+
+<AccordionGroup>
+  <Accordion title="追求最低价格" icon="coins">
+    选 `free`（免费）或低倍率分组如 `claude-cursor`（0.08）、`jd`（0.1）。适合日常使用、学习测试。
+  </Accordion>
+  <Accordion title="需要大上下文窗口" icon="maximize">
+    选带 **1M 上下文** 的分组：`claude-ant`（0.15）、`gemini-ant`（0.5）、`codex-team`（0.2）。适合处理大型代码库。
+  </Accordion>
+  <Accordion title="需要官方原版质量" icon="shield-check">
+    选 `claude-officially`（1.6）或 `gemini-officially`（1）。直连官方 API，稳定性和质量最高，但价格也最高。
+  </Accordion>
+  <Accordion title="使用 Codex 编码" icon="terminal">
+    选 `codex-team`（0.2）。专为 Codex 优化的渠道。
+  </Accordion>
+</AccordionGroup>
+
+## 倍率是什么意思
+
+倍率是在模型官方定价基础上的价格系数。**倍率越低，越便宜**。
+
+实际费用 = **模型官方价格 × 分组倍率**
+
+举个例子，假设某模型官方价格为 10 元/百万 tokens：
+- 使用 `claude-officially`（倍率 1.6）：实际费用 = 10 × 1.6 = **16 元**
+- 使用 `claude-ant`（倍率 0.15）：实际费用 = 10 × 0.15 = **1.5 元**
+- 使用 `free`（倍率 0）：**完全免费**
+
+同一个分组内，不同模型的官方价格不同，所以最终费用也不同。详见[充值与计费](/platform/billing)。
+
+在 [定价页面](https://ruoli.dev/pricing) 可以查看每个模型在不同分组下的具体价格：
+
+<Frame>
+  <img src="/images/model-pricing.png" alt="模型定价界面" />
+</Frame>
+
+## 如何切换分组
+
+分组是绑定在**令牌**上的。要切换分组，创建一个新令牌并选择不同的分组即可。

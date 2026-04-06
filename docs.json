@@ -1,13 +1,24 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Ruoli",
+  "name": "RuoLi",
+  "fonts": {
+    "family": "Noto Sans SC",
+    "heading": {
+      "family": "Noto Serif SC",
+      "weight": 600
+    },
+    "body": {
+      "family": "Noto Sans SC",
+      "weight": 400
+    }
+  },
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "navigation": {
     "languages": [
       {
@@ -15,14 +26,36 @@
         "default": true,
         "tabs": [
           {
-            "tab": "指南",
+            "tab": "快速开始",
             "groups": [
               {
                 "group": "快速开始",
+                "icon": "rocket",
                 "pages": [
                   "index",
-                  "quickstart",
-                  "development"
+                  "quickstart"
+                ]
+              },
+              {
+                "group": "平台使用",
+                "icon": "desktop",
+                "pages": [
+                  "platform/models-and-groups",
+                  "platform/billing",
+                  "platform/faq"
+                ]
+              },
+              {
+                "group": "配置工具",
+                "icon": "screwdriver-wrench",
+                "pages": [
+                  "tools/cc-switch",
+                  "tools/claude-code",
+                  "tools/codex",
+                  "tools/gemini-cli",
+                  "tools/opencode",
+                  "tools/openclaw",
+                  "tools/cherry-studio"
                 ]
               }
             ]
@@ -33,14 +66,36 @@
         "language": "en",
         "tabs": [
           {
-            "tab": "Guides",
+            "tab": "Quick Start",
             "groups": [
               {
-                "group": "Getting started",
+                "group": "Quick Start",
+                "icon": "rocket",
                 "pages": [
                   "en/index",
-                  "en/quickstart",
-                  "en/development"
+                  "en/quickstart"
+                ]
+              },
+              {
+                "group": "Platform",
+                "icon": "desktop",
+                "pages": [
+                  "en/platform/models-and-groups",
+                  "en/platform/billing",
+                  "en/platform/faq"
+                ]
+              },
+              {
+                "group": "Configure Tools",
+                "icon": "screwdriver-wrench",
+                "pages": [
+                  "en/tools/cc-switch",
+                  "en/tools/claude-code",
+                  "en/tools/codex",
+                  "en/tools/gemini-cli",
+                  "en/tools/opencode",
+                  "en/tools/openclaw",
+                  "en/tools/cherry-studio"
                 ]
               }
             ]
@@ -57,7 +112,12 @@
     "dark": "/logo/dark.png"
   },
   "navbar": {
-    "links": []
+    "links": [
+      {
+        "label": "控制台",
+        "href": "https://ruoli.dev"
+      }
+    ]
   },
   "footer": {
     "socials": {}

@@ -1,0 +1,59 @@
+---
+title: "Codex"
+description: "在 OpenAI Codex CLI 中配置 RuoLi"
+---
+
+[Codex](https://github.com/openai/codex) 是 OpenAI 出品的 AI 编码代理，在终端中运行。
+
+## 安装
+
+```bash
+npm install -g @openai/codex
+```
+
+## 使用 CC Switch 配置（推荐）
+
+打开 [CC Switch](https://ccswitch.lovable.app)，选择顶部 **Codex** 标签，点击 **+** 添加配置：
+
+<Frame>
+  <img src="/images/cc-switch/config.png" alt="CC Switch 配置" />
+</Frame>
+
+| 字段 | 填写内容 |
+|------|---------|
+| 供应商名称 | 自定义，如 `ruoli_codex` |
+| API Key | 你的 Key |
+| 请求地址 | `https://ruoli.dev/v1` |
+
+## 手动配置
+
+编辑 `~/.codex/config.toml`：
+
+```toml
+model = "claude-sonnet-4-20250514"
+model_provider = "ruoli"
+
+[model_providers.ruoli]
+name = "RuoLi"
+base_url = "https://ruoli.dev/v1"
+env_key = "RUOLI_API_KEY"
+wire_api = "responses"
+```
+
+设置环境变量：
+
+```bash
+export RUOLI_API_KEY=sk-你的KEY
+```
+
+## 切换模型
+
+修改 `config.toml` 中的 `model` 字段，或启动时指定：
+
+```bash
+codex --model gpt-4o
+```
+
+也可以在 CC Switch 中切换模型。
+
+<Info>**官方文档**：[developers.openai.com/codex](https://developers.openai.com/codex)</Info>

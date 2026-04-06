@@ -1,0 +1,68 @@
+---
+title: "Claude Code"
+description: "在 Claude Code 中配置 RuoLi"
+---
+
+[Claude Code](https://code.claude.com/docs) 是 Anthropic 出品的 AI 编码代理，在终端中读取代码、编辑文件、运行命令。
+
+## 安装
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+## 使用 CC Switch 配置（推荐）
+
+打开 [CC Switch](https://ccswitch.lovable.app)，选择顶部 **Claude** 标签，点击 **+** 添加配置：
+
+<Frame>
+  <img src="/images/cc-switch/config.png" alt="CC Switch 配置" />
+</Frame>
+
+| 字段 | 填写内容 |
+|------|---------|
+| 供应商名称 | 自定义，如 `ruoli_claude` |
+| API Key | 你的 Key |
+| 请求地址 | `https://ruoli.dev` |
+
+<Warning>Claude Code 的请求地址是 `https://ruoli.dev`，**不带** `/v1`。</Warning>
+
+还可以配置模型映射，将不同的模型别名映射到你想用的模型：
+
+<Frame>
+  <img src="/images/cc-switch/models.png" alt="CC Switch 模型映射" />
+</Frame>
+
+## 手动配置
+
+编辑 `~/.claude/settings.json`：
+
+```json
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://ruoli.dev",
+    "ANTHROPIC_AUTH_TOKEN": "sk-你的KEY"
+  }
+}
+```
+
+或通过环境变量：
+
+```bash
+export ANTHROPIC_BASE_URL=https://ruoli.dev
+export ANTHROPIC_AUTH_TOKEN=sk-你的KEY
+```
+
+## 切换模型
+
+在 Claude Code 中使用 `/model` 命令：
+
+```
+/model sonnet
+/model opus
+/model haiku
+```
+
+也可以在 CC Switch 中切换模型。
+
+<Info>**官方文档**：[code.claude.com/docs](https://code.claude.com/docs)</Info>

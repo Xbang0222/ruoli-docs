@@ -1,0 +1,78 @@
+---
+title: "CC Switch"
+description: "一键配置所有 AI 工具连接 RuoLi"
+---
+
+[CC Switch](https://ccswitch.lovable.app) 是一个 AI CLI 配置管理工具，提供图形化界面，可以一键配置和切换 Claude Code、Codex、Gemini CLI、OpenCode、OpenClaw 的 API 连接。
+
+## 打开 CC Switch
+
+访问 [ccswitch.lovable.app](https://ccswitch.lovable.app) 即可使用。
+
+顶部标签栏可以切换不同的工具：
+
+<Frame>
+  <img src="/images/cc-switch/main.png" alt="CC Switch 主界面" />
+</Frame>
+
+## 添加 RuoLi
+
+1. 点击右上角 **+** 添加新配置
+2. 填写供应商信息：
+
+<Frame>
+  <img src="/images/cc-switch/config.png" alt="CC Switch 详细配置" />
+</Frame>
+
+| 字段 | 填写内容 |
+|------|---------|
+| 供应商名称 | 自定义，如 `ruoli_claude` |
+| API Key | 你的 Key（在 [ruoli.dev](https://ruoli.dev) 控制台的令牌页面获取）|
+| 请求地址 | `https://ruoli.dev` |
+
+3. 点击 **保存**
+
+## 配置模型映射
+
+向下滚动可以配置模型映射，将 Claude Code 的模型别名映射到你想用的模型：
+
+<Frame>
+  <img src="/images/cc-switch/models.png" alt="CC Switch 模型配置" />
+</Frame>
+
+| 字段 | 说明 |
+|------|------|
+| 主模型 | Claude Code 默认使用的模型 |
+| 推理模型 (Thinking) | 用于深度推理的模型 |
+| Haiku 默认模型 | `/model haiku` 时使用的模型 |
+| Sonnet 默认模型 | `/model sonnet` 时使用的模型 |
+| Opus 默认模型 | `/model opus` 时使用的模型 |
+
+勾选 **写入通用配置** 可以将配置应用到所有工具。
+
+## 切换 Provider
+
+在主界面中，选中你要使用的配置即可切换。支持**自动故障转移** — 当一个 Provider 不可用时自动切换到下一个。
+
+## 从 RuoLi 控制台导入
+
+在 [ruoli.dev](https://ruoli.dev) 的令牌页面，点击 **复制连接信息**，直接粘贴到 CC Switch 中即可完成配置。
+
+## 支持的工具
+
+| 工具 | 支持 |
+|------|------|
+| Claude Code | 支持 |
+| Codex | 支持 |
+| Gemini CLI | 支持 |
+| OpenCode | 支持 |
+| OpenClaw | 支持 |
+
+<Tip>
+Cherry Studio 不支持 CC Switch，请查看 [Cherry Studio 配置页面](/tools/cherry-studio) 手动配置。
+</Tip>
+
+<Info>
+**官方网站**：[ccswitch.lovable.app](https://ccswitch.lovable.app) ·
+**GitHub**：[github.com/HoBeedzc/cc-switch](https://github.com/HoBeedzc/cc-switch)
+</Info>
