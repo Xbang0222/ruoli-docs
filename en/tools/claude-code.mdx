@@ -56,4 +56,34 @@ Use the `/model` command in Claude Code:
 
 You can also switch models in CC Switch.
 
+## Configure Context Compression
+
+Claude Code auto-compresses context at about 83% of the context window by default. If you're using a 1M context window, you can adjust when compression triggers via `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`.
+
+For example, to trigger compression at 180k tokens (180k / 1000k = 18%):
+
+Add to the `env` block in `~/.claude/settings.json`:
+
+```json
+{
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "18"
+  }
+}
+```
+
+Or set a temporary environment variable:
+
+```bash
+export CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=18
+```
+
+| Value | Trigger point (1M window) | Use case |
+|-------|--------------------------|----------|
+| `18` | ~180k tokens | Keep context clean frequently |
+| `50` | ~500k tokens | Balance performance and context |
+| `83` | ~830k tokens (default) | Maximize context utilization |
+
+<Warning>You can only set the threshold below 83%. Values above 83% are silently ignored.</Warning>
+
 <Info>**Official Documentation**: [code.claude.com/docs](https://code.claude.com/docs)</Info>

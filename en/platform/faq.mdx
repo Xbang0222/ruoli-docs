@@ -45,6 +45,17 @@ description: "Frequently asked questions about using RuoLi"
     - And any other OpenAI API-compatible tools
   </Accordion>
 
+  <Accordion title="Getting 'context length exceeded' error?">
+    This usually means the conversation context has exceeded the model's context window limit.
+
+    Solutions:
+    - Use the `/compact` command in Claude Code to manually compress context
+    - Configure auto-compression: add `"CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50"` to the `env` block in `~/.claude/settings.json` — lower values trigger compression earlier
+    - Choose a group with larger context support, such as `claude-ant` (1M context) or `codex-team` (1M context)
+
+    See [Claude Code context compression](/en/tools/claude-code#configure-context-compression) for details.
+  </Accordion>
+
   <Accordion title="What is the API URL?">
     Unified URL: `https://ruoli.dev/v1`
 

@@ -45,6 +45,17 @@ description: "RuoLi 使用中的常见问题"
     - 以及其他兼容 OpenAI API 的工具
   </Accordion>
 
+  <Accordion title="提示「上下文长度过大」怎么办？">
+    这通常是因为对话上下文超过了模型的上下文窗口限制。
+
+    解决方法：
+    - 在 Claude Code 中使用 `/compact` 命令手动压缩上下文
+    - 配置自动压缩：在 `~/.claude/settings.json` 的 `env` 中添加 `"CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50"`，数值越小越早触发压缩
+    - 选择支持更大上下文的分组，如 `claude-ant`（1M 上下文）或 `codex-team`（1M 上下文）
+
+    详见 [Claude Code 配置上下文压缩](/tools/claude-code#配置上下文压缩)。
+  </Accordion>
+
   <Accordion title="API 地址是什么？">
     统一地址：`https://ruoli.dev/v1`
 
