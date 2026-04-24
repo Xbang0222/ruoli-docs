@@ -11,18 +11,9 @@ description: "OpenAI's latest image model — call via RuoLi for up to 4K images
 |-------|-------|
 | Endpoint | `POST https://ruoli.dev/v1/images/generations` |
 | Token group | `codex-team` (other groups return `No available channel`) |
+| Sizes | **1K** `1024x1024` `1536x1024` `1024x1536` · **2K** `2048x2048` `2048x1152` · **4K** `3840x2160` `2160x3840` |
 | Latency | 30 – 90 seconds |
 | Pricing | See the [pricing page](https://ruoli.dev/pricing), billed per image |
-
-## Supported Sizes
-
-| Size | Notes |
-|------|-------|
-| `1024x1024` | 1K square |
-| `1536x1024` · `1024x1536` | 1K landscape · 1K portrait |
-| `2048x2048` | 2K square |
-| `2048x1152` | 2K landscape |
-| `3840x2160` · `2160x3840` | 4K landscape · 4K portrait |
 
 ## Examples
 
@@ -90,9 +81,21 @@ description: "OpenAI's latest image model — call via RuoLi for up to 4K images
 | `model` | Fixed `gpt-image-2` |
 | `prompt` | Image description, Chinese or English |
 | `n` | Count, 1 – 10, default 1 |
-| `size` | See [Supported Sizes](#supported-sizes) |
+| `size` | One of the 7 sizes in [Basics](#basics) |
 | `quality` | `standard` · `hd` · `medium` |
 | `response_format` | `b64_json` (default) · `url`. 4K base64 ~8MB — use `url` for bandwidth-sensitive cases |
+
+## Client Setup
+
+Any OpenAI-compatible client works — set the endpoint to `https://ruoli.dev/v1` and the model to `gpt-image-2`. Common client entry points:
+
+| Client | Entry |
+|--------|-------|
+| Lobe Chat | Settings → OpenAI → enable image generation, model `gpt-image-2` |
+| NextChat | Custom endpoint → enable DALL-E, model `gpt-image-2` |
+| [Cherry Studio](/en/tools/cherry-studio) | Custom provider → image-generation mode, model `gpt-image-2` |
+| SillyTavern | Image Generation → OpenAI-compatible → endpoint `https://ruoli.dev/v1` |
+| n8n / Dify | HTTP Request node hits `/v1/images/generations` directly |
 
 ## Common Errors
 
@@ -100,7 +103,7 @@ description: "OpenAI's latest image model — call via RuoLi for up to 4K images
 |-------|-----|
 | `No available channel` | Switch token group to `codex-team` |
 | `503 ... /images/generations` | Use `/v1/images/generations` — not `/chat/completions` |
-| `Invalid size` | Pick one from [Supported Sizes](#supported-sizes) |
+| `Invalid size` | Pick one of the 7 sizes in [Basics](#basics) |
 | `504 Gateway Timeout` | Raise client timeout to 120s+ |
 
 <Warning>

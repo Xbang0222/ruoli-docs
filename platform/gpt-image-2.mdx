@@ -11,18 +11,9 @@ description: "OpenAI 最新图像模型，通过 RuoLi 调用生成最高 4K 图
 |------|-----|
 | 端点 | `POST https://ruoli.dev/v1/images/generations` |
 | Token 分组 | `codex-team`（其它分组报 `No available channel`） |
+| 支持尺寸 | **1K** `1024x1024` `1536x1024` `1024x1536` · **2K** `2048x2048` `2048x1152` · **4K** `3840x2160` `2160x3840` |
 | 出图时间 | 30 – 90 秒 |
 | 定价 | 以[定价页](https://ruoli.dev/pricing)为准，按张结算 |
-
-## 支持尺寸
-
-| 尺寸 | 说明 |
-|-----|------|
-| `1024x1024` | 1K 方图 |
-| `1536x1024` · `1024x1536` | 1K 横图 · 1K 竖图 |
-| `2048x2048` | 2K 方图 |
-| `2048x1152` | 2K 横屏 |
-| `3840x2160` · `2160x3840` | 4K 横屏 · 4K 竖屏 |
 
 ## 调用示例
 
@@ -90,9 +81,21 @@ description: "OpenAI 最新图像模型，通过 RuoLi 调用生成最高 4K 图
 | `model` | 固定 `gpt-image-2` |
 | `prompt` | 图片描述，中英文均可 |
 | `n` | 数量，1 – 10，默认 1 |
-| `size` | 见[支持尺寸](#支持尺寸) |
+| `size` | 见[基础信息](#基础信息)里的 7 种尺寸 |
 | `quality` | `standard` · `hd` · `medium` |
 | `response_format` | `b64_json`（默认）· `url`。4K 响应 base64 约 8MB，流量敏感场景建议 `url` |
+
+## 客户端使用
+
+任何支持 OpenAI 协议的客户端都能直接用 —— 接口地址填 `https://ruoli.dev/v1`，模型名填 `gpt-image-2`。常见客户端的入口：
+
+| 客户端 | 入口 |
+|------|------|
+| Lobe Chat | 设置 → OpenAI → 开启绘图，模型选 `gpt-image-2` |
+| NextChat | 自定义端点 → 启用 DALL-E，模型 `gpt-image-2` |
+| [Cherry Studio](/tools/cherry-studio) | 自定义提供商 → 图像生成模式选 `gpt-image-2` |
+| SillyTavern | Image Generation → OpenAI 兼容 → 端点 `https://ruoli.dev/v1` |
+| n8n / Dify | HTTP Request 节点直接调 `/v1/images/generations` |
 
 ## 常见错误
 
@@ -100,7 +103,7 @@ description: "OpenAI 最新图像模型，通过 RuoLi 调用生成最高 4K 图
 |-----|-----|
 | `No available channel` | 令牌分组改成 `codex-team` |
 | `503 ... /images/generations` | 改用 `/v1/images/generations`，不要走 `/chat/completions` |
-| `Invalid size` | 从[支持尺寸](#支持尺寸)里选一个 |
+| `Invalid size` | 用[基础信息](#基础信息)里列出的 7 种尺寸 |
 | `504 Gateway Timeout` | 客户端超时设到 120 秒以上 |
 
 <Warning>
