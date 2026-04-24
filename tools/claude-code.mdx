@@ -27,11 +27,43 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 <Warning>Claude Code 的请求地址是 `https://ruoli.dev`，**不带** `/v1`。</Warning>
 
-还可以配置模型映射，将不同的模型别名映射到你想用的模型：
+## 切换模型
+
+除了 Claude 原生模型，RuoLi 还接入了 `gpt-5.5`、GLM、Kimi、DeepSeek 等第三方模型。在 CC Switch 打开「编辑供应商 → 模型映射」，把 Claude 的别名指向你想用的模型，保存即可生效，无需改 JSON。
 
 <Frame>
   <img src="/images/cc-switch/models.png" alt="CC Switch 模型映射" />
 </Frame>
+
+| 字段 | 作用 |
+|------|------|
+| 主模型 | Claude Code 默认调用的模型 |
+| 推理模型 (Thinking) | 开启深度思考 / Reasoning 时使用的模型 |
+| Haiku 默认模型 | `haiku` 别名对应的目标模型 |
+| Sonnet 默认模型 | `sonnet` 别名对应的目标模型 |
+| Opus 默认模型 | `opus` 别名对应的目标模型 |
+
+<Info>如果供应商原生就是 Claude 模型，这几项可留空 —— 仅在需要把别名指向其他模型时填写。</Info>
+
+## 关闭归属 Header
+
+<Warning>
+Claude Code 默认在每次请求里注入动态的归属 header（包含会话 ID 等），会**彻底击穿上游 prompt cache** —— 缓存命中率暴跌、费用上涨、响应变慢。
+
+不论用 Claude 官方模型还是 GLM / Kimi / DeepSeek 等第三方模型，**都必须关闭**。
+</Warning>
+
+在 CC Switch「编辑供应商 → 配置 JSON」的 `env` 里加一行：
+
+```json
+"CLAUDE_CODE_ATTRIBUTION_HEADER": "0"
+```
+
+<Frame>
+  <img src="/images/cc-switch/json-config.png" alt="在 CC Switch JSON 中添加 CLAUDE_CODE_ATTRIBUTION_HEADER" />
+</Frame>
+
+手动配置 `~/.claude/settings.json` 时同理，见下方示例。
 
 ## 手动配置
 
@@ -41,7 +73,8 @@ curl -fsSL https://claude.ai/install.sh | bash
 {
   "env": {
     "ANTHROPIC_BASE_URL": "https://ruoli.dev",
-    "ANTHROPIC_AUTH_TOKEN": "sk-你的KEY"
+    "ANTHROPIC_AUTH_TOKEN": "sk-你的KEY",
+    "CLAUDE_CODE_ATTRIBUTION_HEADER": "0"
   }
 }
 ```
@@ -51,19 +84,8 @@ curl -fsSL https://claude.ai/install.sh | bash
 ```bash
 export ANTHROPIC_BASE_URL=https://ruoli.dev
 export ANTHROPIC_AUTH_TOKEN=sk-你的KEY
+export CLAUDE_CODE_ATTRIBUTION_HEADER=0
 ```
-
-## 切换模型
-
-在 Claude Code 中使用 `/model` 命令：
-
-```
-/model sonnet
-/model opus
-/model haiku
-```
-
-也可以在 CC Switch 中切换模型。
 
 ## 配置上下文压缩
 

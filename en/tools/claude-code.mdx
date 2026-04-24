@@ -24,6 +24,44 @@ Select Claude Code and click Apply.
 
 <Warning>The API URL for Claude Code is `https://ruoli.dev`, **without** `/v1`.</Warning>
 
+## Switch Models
+
+Beyond native Claude models, RuoLi routes to third-party models like `gpt-5.5`, GLM, Kimi, and DeepSeek. Open **CC Switch → Edit Provider → Model Mapping**, point each Claude alias at the target model, and save — no JSON editing required.
+
+<Frame>
+  <img src="/images/cc-switch/models.png" alt="CC Switch Model Mapping" />
+</Frame>
+
+| Field | Purpose |
+|-------|---------|
+| Main Model | The default model Claude Code calls |
+| Thinking Model | Used when extended / reasoning mode is on |
+| Haiku Default Model | Target model for the `haiku` alias |
+| Sonnet Default Model | Target model for the `sonnet` alias |
+| Opus Default Model | Target model for the `opus` alias |
+
+<Info>Leave these blank if your provider is natively Claude — only fill them in when you want to route aliases to a different model.</Info>
+
+## Disable Attribution Header (Required)
+
+<Warning>
+Claude Code injects a dynamic attribution header (containing session ID and more) into every request by default — this **completely destroys upstream prompt caching**, causing cache hit rates to collapse, costs to spike, and responses to slow down.
+
+**Always disable it**, whether you're using native Claude models or third-party models like GLM / Kimi / DeepSeek.
+</Warning>
+
+In CC Switch → **Edit Provider → Config JSON**, add one line to `env`:
+
+```json
+"CLAUDE_CODE_ATTRIBUTION_HEADER": "0"
+```
+
+<Frame>
+  <img src="/images/cc-switch/json-config.png" alt="Add CLAUDE_CODE_ATTRIBUTION_HEADER in CC Switch JSON" />
+</Frame>
+
+The same applies to manual `~/.claude/settings.json` — see the example below.
+
 ## Manual Configuration
 
 Edit `~/.claude/settings.json`:
@@ -32,7 +70,8 @@ Edit `~/.claude/settings.json`:
 {
   "env": {
     "ANTHROPIC_BASE_URL": "https://ruoli.dev",
-    "ANTHROPIC_AUTH_TOKEN": "sk-YOUR-KEY"
+    "ANTHROPIC_AUTH_TOKEN": "sk-YOUR-KEY",
+    "CLAUDE_CODE_ATTRIBUTION_HEADER": "0"
   }
 }
 ```
@@ -42,19 +81,8 @@ Or via environment variables:
 ```bash
 export ANTHROPIC_BASE_URL=https://ruoli.dev
 export ANTHROPIC_AUTH_TOKEN=sk-YOUR-KEY
+export CLAUDE_CODE_ATTRIBUTION_HEADER=0
 ```
-
-## Switch Models
-
-Use the `/model` command in Claude Code:
-
-```
-/model sonnet
-/model opus
-/model haiku
-```
-
-You can also switch models in CC Switch.
 
 ## Configure Context Compression
 

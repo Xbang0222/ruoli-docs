@@ -45,6 +45,24 @@ description: "Frequently asked questions about using RuoLi"
     - And any other OpenAI API-compatible tools
   </Accordion>
 
+  <Accordion title="How do I switch models in Claude Code?">
+    To use third-party models like `gpt-5.5`, GLM, or Kimi, open **CC Switch → Edit Provider → Model Mapping** and point each Claude alias at the target model — no JSON editing needed.
+
+    See [Switch Models in Claude Code](/en/tools/claude-code#switch-models) for details.
+  </Accordion>
+
+  <Accordion title="Low cache hit rate or unexpectedly high cost in Claude Code?">
+    It's almost always the default attribution header — every request carries a dynamic session ID that blows out the upstream prompt cache.
+
+    In CC Switch → **Edit Provider → Config JSON**, add one line to `env`:
+
+    ```json
+    "CLAUDE_CODE_ATTRIBUTION_HEADER": "0"
+    ```
+
+    Recommended whether you're on native Claude or a third-party model. See [Disable Attribution Header](/en/tools/claude-code#disable-attribution-header-required) for details.
+  </Accordion>
+
   <Accordion title="Getting 'context length exceeded' error?">
     This usually means the conversation context has exceeded the model's context window limit.
 
