@@ -42,6 +42,7 @@
                 "pages": [
                   "platform/models-and-groups",
                   "platform/billing",
+                  "platform/gpt-image-2",
                   "platform/faq"
                 ]
               },
@@ -82,6 +83,7 @@
                 "pages": [
                   "en/platform/models-and-groups",
                   "en/platform/billing",
+                  "en/platform/gpt-image-2",
                   "en/platform/faq"
                 ]
               },

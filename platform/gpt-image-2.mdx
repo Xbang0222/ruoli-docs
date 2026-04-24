@@ -1,0 +1,108 @@
+---
+title: "gpt-image-2"
+description: "OpenAI 最新图像模型，通过 RuoLi 调用生成最高 4K 图像"
+---
+
+`gpt-image-2` 是 OpenAI 最新的图像生成模型，最长边支持 3840px。RuoLi 直接透传 OpenAI `/v1/images/generations` 协议，任何 OpenAI SDK 或兼容客户端都能直接对接。
+
+## 基础信息
+
+| 项目 | 值 |
+|------|-----|
+| 端点 | `POST https://ruoli.dev/v1/images/generations` |
+| Token 分组 | `codex-team`（其它分组报 `No available channel`） |
+| 出图时间 | 30 – 90 秒 |
+| 定价 | 以[定价页](https://ruoli.dev/pricing)为准，按张结算 |
+
+## 支持尺寸
+
+| 尺寸 | 说明 |
+|-----|------|
+| `1024x1024` | 1K 方图 |
+| `1536x1024` · `1024x1536` | 1K 横图 · 1K 竖图 |
+| `2048x2048` | 2K 方图 |
+| `2048x1152` | 2K 横屏 |
+| `3840x2160` · `2160x3840` | 4K 横屏 · 4K 竖屏 |
+
+## 调用示例
+
+<Tabs>
+  <Tab title="cURL">
+    ```bash
+    curl https://ruoli.dev/v1/images/generations \
+      -H "Authorization: Bearer sk-你的KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "model": "gpt-image-2",
+        "prompt": "一只橘猫坐在沙发上",
+        "size": "3840x2160"
+      }'
+    ```
+  </Tab>
+  <Tab title="Python">
+    ```python
+    from openai import OpenAI
+    import base64
+
+    client = OpenAI(
+        api_key="sk-你的KEY",
+        base_url="https://ruoli.dev/v1",
+    )
+
+    res = client.images.generate(
+        model="gpt-image-2",
+        prompt="一只橘猫坐在沙发上",
+        size="3840x2160",
+    )
+
+    with open("cat.png", "wb") as f:
+        f.write(base64.b64decode(res.data[0].b64_json))
+    ```
+  </Tab>
+  <Tab title="Node.js">
+    ```js
+    import OpenAI from "openai";
+    import fs from "fs";
+
+    const client = new OpenAI({
+      apiKey: "sk-你的KEY",
+      baseURL: "https://ruoli.dev/v1",
+    });
+
+    const res = await client.images.generate({
+      model: "gpt-image-2",
+      prompt: "一只橘猫坐在沙发上",
+      size: "3840x2160",
+    });
+
+    fs.writeFileSync(
+      "cat.png",
+      Buffer.from(res.data[0].b64_json, "base64"),
+    );
+    ```
+  </Tab>
+</Tabs>
+
+## 请求参数
+
+| 参数 | 说明 |
+|-----|-----|
+| `model` | 固定 `gpt-image-2` |
+| `prompt` | 图片描述，中英文均可 |
+| `n` | 数量，1 – 10，默认 1 |
+| `size` | 见[支持尺寸](#支持尺寸) |
+| `quality` | `standard` · `hd` · `medium` |
+| `response_format` | `b64_json`（默认）· `url`。4K 响应 base64 约 8MB，流量敏感场景建议 `url` |
+
+## 常见错误
+
+| 报错 | 解决 |
+|-----|-----|
+| `No available channel` | 令牌分组改成 `codex-team` |
+| `503 ... /images/generations` | 改用 `/v1/images/generations`，不要走 `/chat/completions` |
+| `Invalid size` | 从[支持尺寸](#支持尺寸)里选一个 |
+| `504 Gateway Timeout` | 客户端超时设到 120 秒以上 |
+
+<Warning>
+后台"测试连通"按钮报 503 是正常现象 —— new-api 测试走 `/chat/completions`，图像模型只认 `/images/generations`，协议不匹配。真实调用不受影响，忽略即可。
+</Warning>

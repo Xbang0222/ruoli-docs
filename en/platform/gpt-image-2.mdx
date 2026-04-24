@@ -1,0 +1,108 @@
+---
+title: "gpt-image-2"
+description: "OpenAI's latest image model — call via RuoLi for up to 4K images"
+---
+
+`gpt-image-2` is OpenAI's latest image-generation model, supporting up to 3840px on the longest side. RuoLi proxies OpenAI's `/v1/images/generations` protocol directly — any OpenAI SDK or compatible client works out of the box.
+
+## Basics
+
+| Field | Value |
+|-------|-------|
+| Endpoint | `POST https://ruoli.dev/v1/images/generations` |
+| Token group | `codex-team` (other groups return `No available channel`) |
+| Latency | 30 – 90 seconds |
+| Pricing | See the [pricing page](https://ruoli.dev/pricing), billed per image |
+
+## Supported Sizes
+
+| Size | Notes |
+|------|-------|
+| `1024x1024` | 1K square |
+| `1536x1024` · `1024x1536` | 1K landscape · 1K portrait |
+| `2048x2048` | 2K square |
+| `2048x1152` | 2K landscape |
+| `3840x2160` · `2160x3840` | 4K landscape · 4K portrait |
+
+## Examples
+
+<Tabs>
+  <Tab title="cURL">
+    ```bash
+    curl https://ruoli.dev/v1/images/generations \
+      -H "Authorization: Bearer sk-YOUR-KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "model": "gpt-image-2",
+        "prompt": "An orange cat sitting on a sofa",
+        "size": "3840x2160"
+      }'
+    ```
+  </Tab>
+  <Tab title="Python">
+    ```python
+    from openai import OpenAI
+    import base64
+
+    client = OpenAI(
+        api_key="sk-YOUR-KEY",
+        base_url="https://ruoli.dev/v1",
+    )
+
+    res = client.images.generate(
+        model="gpt-image-2",
+        prompt="An orange cat sitting on a sofa",
+        size="3840x2160",
+    )
+
+    with open("cat.png", "wb") as f:
+        f.write(base64.b64decode(res.data[0].b64_json))
+    ```
+  </Tab>
+  <Tab title="Node.js">
+    ```js
+    import OpenAI from "openai";
+    import fs from "fs";
+
+    const client = new OpenAI({
+      apiKey: "sk-YOUR-KEY",
+      baseURL: "https://ruoli.dev/v1",
+    });
+
+    const res = await client.images.generate({
+      model: "gpt-image-2",
+      prompt: "An orange cat sitting on a sofa",
+      size: "3840x2160",
+    });
+
+    fs.writeFileSync(
+      "cat.png",
+      Buffer.from(res.data[0].b64_json, "base64"),
+    );
+    ```
+  </Tab>
+</Tabs>
+
+## Request Parameters
+
+| Param | Description |
+|-------|-------------|
+| `model` | Fixed `gpt-image-2` |
+| `prompt` | Image description, Chinese or English |
+| `n` | Count, 1 – 10, default 1 |
+| `size` | See [Supported Sizes](#supported-sizes) |
+| `quality` | `standard` · `hd` · `medium` |
+| `response_format` | `b64_json` (default) · `url`. 4K base64 ~8MB — use `url` for bandwidth-sensitive cases |
+
+## Common Errors
+
+| Error | Fix |
+|-------|-----|
+| `No available channel` | Switch token group to `codex-team` |
+| `503 ... /images/generations` | Use `/v1/images/generations` — not `/chat/completions` |
+| `Invalid size` | Pick one from [Supported Sizes](#supported-sizes) |
+| `504 Gateway Timeout` | Raise client timeout to 120s+ |
+
+<Warning>
+The "Test Connectivity" button in the console returns 503 — this is normal. The new-api test hits `/chat/completions`, but image models only accept `/images/generations` — a protocol mismatch. Real client calls work fine; ignore the test button's error.
+</Warning>
