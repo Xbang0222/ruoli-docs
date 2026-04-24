@@ -17,23 +17,22 @@ When creating a token, you need to select a group. The group determines the **pr
 
 | Group | Multiplier | Description |
 |-------|------------|-------------|
-| `free` | **0** | Free group, no credits consumed |
-| `claude-cursor` | **0.08** | Cursor's Claude 2api, 200k context |
-| `claude-ant` | **0.15** | Antigravity's Claude 2api, 1M context |
-| `claude-officially` | **1.6** | Anthropic official Max |
-| `jd` | **0.1** | JD Cloud domestic models |
-| `gemini-ant` | **0.5** | Antigravity's Gemini 2api, 1M context |
+| `cn` | **0.01** | Domestic Chinese models |
+| `gemini-ant` | **0.2** | Antigravity's Gemini 2api, 1M context |
 | `gemini-officially` | **1** | Gemini official API |
+| `claude-officially` | **1.6** | Anthropic official Max |
+| `claude-ant` | **0.6** | Antigravity's Claude 2api, 1M context |
 | `codex-team` | **0.2** | Codex official API, 1M context, supports [gpt-image-2](/en/platform/gpt-image-2) image generation |
+| `claude-kiro` | **0.5** | Kiro's Claude 2api, 1M context |
 
 ## How to Choose a Group
 
 <AccordionGroup>
   <Accordion title="Looking for the lowest price" icon="coins">
-    Choose `free` (free) or low-multiplier groups like `claude-cursor` (0.08) or `jd` (0.1). Best for everyday use, learning, and testing.
+    Choose `cn` (0.01) — domestic Chinese models, great for everyday use, learning, and testing.
   </Accordion>
   <Accordion title="Need a large context window" icon="maximize">
-    Choose groups with **1M context**: `claude-ant` (0.15), `gemini-ant` (0.5), or `codex-team` (0.2). Best for working with large codebases.
+    Choose groups with **1M context**: `gemini-ant` (0.2), `codex-team` (0.2), `claude-kiro` (0.5), or `claude-ant` (0.6). Best for working with large codebases.
   </Accordion>
   <Accordion title="Need official-grade quality" icon="shield-check">
     Choose `claude-officially` (1.6) or `gemini-officially` (1). Direct connection to the official API — highest stability and quality, but also the highest price.
@@ -51,8 +50,8 @@ Actual cost = **Model official price x Group multiplier**
 
 For example, if a model's official price is 10 yuan per million tokens:
 - Using `claude-officially` (multiplier 1.6): cost = 10 x 1.6 = **16 yuan**
-- Using `claude-ant` (multiplier 0.15): cost = 10 x 0.15 = **1.5 yuan**
-- Using `free` (multiplier 0): **completely free**
+- Using `claude-ant` (multiplier 0.6): cost = 10 x 0.6 = **6 yuan**
+- Using `cn` (multiplier 0.01): cost = 10 x 0.01 = **0.1 yuan**
 
 Different models have different official prices within the same group, so the final cost varies. See [Billing & Top-Up](/en/platform/billing) for details.
 
