@@ -85,18 +85,6 @@ description: "OpenAI's latest image model — call via RuoLi for up to 4K images
 | `quality` | `standard` · `hd` · `medium` |
 | `response_format` | `b64_json` (default) · `url`. 4K base64 ~8MB — use `url` for bandwidth-sensitive cases |
 
-## Client Setup
-
-Any OpenAI-compatible client works — set the endpoint to `https://ruoli.dev/v1` and the model to `gpt-image-2`. Common client entry points:
-
-| Client | Entry |
-|--------|-------|
-| Lobe Chat | Settings → OpenAI → enable image generation, model `gpt-image-2` |
-| NextChat | Custom endpoint → enable DALL-E, model `gpt-image-2` |
-| [Cherry Studio](/en/tools/cherry-studio) | Custom provider → image-generation mode, model `gpt-image-2` |
-| SillyTavern | Image Generation → OpenAI-compatible → endpoint `https://ruoli.dev/v1` |
-| n8n / Dify | HTTP Request node hits `/v1/images/generations` directly |
-
 ## Common Errors
 
 | Error | Fix |

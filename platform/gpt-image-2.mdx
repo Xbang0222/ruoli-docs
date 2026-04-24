@@ -85,18 +85,6 @@ description: "OpenAI 最新图像模型，通过 RuoLi 调用生成最高 4K 图
 | `quality` | `standard` · `hd` · `medium` |
 | `response_format` | `b64_json`（默认）· `url`。4K 响应 base64 约 8MB，流量敏感场景建议 `url` |
 
-## 客户端使用
-
-任何支持 OpenAI 协议的客户端都能直接用 —— 接口地址填 `https://ruoli.dev/v1`，模型名填 `gpt-image-2`。常见客户端的入口：
-
-| 客户端 | 入口 |
-|------|------|
-| Lobe Chat | 设置 → OpenAI → 开启绘图，模型选 `gpt-image-2` |
-| NextChat | 自定义端点 → 启用 DALL-E，模型 `gpt-image-2` |
-| [Cherry Studio](/tools/cherry-studio) | 自定义提供商 → 图像生成模式选 `gpt-image-2` |
-| SillyTavern | Image Generation → OpenAI 兼容 → 端点 `https://ruoli.dev/v1` |
-| n8n / Dify | HTTP Request 节点直接调 `/v1/images/generations` |
-
 ## 常见错误
 
 | 报错 | 解决 |
