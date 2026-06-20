@@ -1,51 +1,81 @@
 ---
 title: "Quick Start"
-description: "Sign up, get your API Key, and start in 5 minutes"
+description: "From sign-up to your first successful call in 6 steps"
 ---
 
-## Step 1: Create an Account
+First time with ruoli? Follow this single path and you'll be up and running. None of the steps are hard — the key is picking the right group in Step 3, which is where new users most often get stuck.
 
-Go to [ruoli.dev](https://ruoli.dev) to register your account and log in.
+<Steps>
+  <Step title="Create an account">
+    Go to [ruoli.dev](https://ruoli.dev) to sign up and log in. Sign up with QQ Mail or Gmail.
+  </Step>
 
-## Step 2: Create an API Key (Token)
+  <Step title="Add funds">
+    Open the **Wallet** page in the console and top up; you can also redeem a gift code.
 
-1. Go to the console and click the **Tokens** page
-2. Click **Add Token**
-3. Enter a token name
-4. Select a **Group** (determines the pricing multiplier — see [Models & Groups](/en/platform/models-and-groups))
-5. Select available models as needed (leave empty = all models)
-6. Click **Create** and copy the generated API Key
+    You're billed by actual token usage, so a small top-up is enough to try it out. See [Billing & Top-Up](/en/platform/billing).
+  </Step>
 
-<Warning>The API Key is only shown once — save it immediately. If lost, you'll need to create a new one.</Warning>
+  <Step title="Check the marketplace and decide on a group (important)">
+    Open the [model marketplace](https://ruoli.dev/pricing) and confirm: which group your model is in, and its price.
 
-## Step 3: Choose Your Tool
+    The group determines which models you can call. A token created with the wrong group will fail with "no available channel" on first call — so look before you create.
 
-Check the configuration guide for the tool you're using:
+    If you don't want to dig in, pick from this:
 
-### Coding Agents
+    | You want | Group |
+    |----------|-------|
+    | Cheapest (can tolerate occasional instability) | `gpt-plus` |
+    | Codex/GPT coding, stable | `gpt-pro` |
+    | Claude on a budget | `claude-kiro` |
+    | Gemini | `gemini-ant` |
+    | Official Claude quality | `claude-officially` |
 
-<CardGroup cols={2}>
-  <Card title="Claude Code" icon="terminal" href="/en/tools/claude-code">
-    Anthropic's AI coding agent
-  </Card>
-  <Card title="Codex" icon="terminal" href="/en/tools/codex">
-    OpenAI's AI coding agent
-  </Card>
-  <Card title="Gemini CLI" icon="terminal" href="/en/tools/gemini-cli">
-    Google's AI coding agent
-  </Card>
-  <Card title="OpenCode" icon="terminal" href="/en/tools/opencode">
-    Open-source AI coding agent
-  </Card>
-  <Card title="OpenClaw" icon="terminal" href="/en/tools/openclaw">
-    Open-source personal AI assistant
-  </Card>
-</CardGroup>
+    Full details in [Models & Groups](/en/platform/models-and-groups).
+  </Step>
 
-### Chat Clients
+  <Step title="Create an API Key (token)">
+    1. In the console, open the **Tokens** page and click **Add Token**
+    2. Enter a token name
+    3. **Select the group** (the one you decided on above)
+    4. Pick available models as needed, or leave empty for all
+    5. Click **Create** and copy the API Key
 
-<CardGroup cols={1}>
-  <Card title="Cherry Studio" icon="comments" href="/en/tools/cherry-studio">
-    Cross-platform desktop AI chat client
-  </Card>
-</CardGroup>
+    <Warning>The API Key is shown only once — save it immediately. If lost, create a new one.</Warning>
+  </Step>
+
+  <Step title="Configure your tool">
+    Pick the tool you use and follow its page. Not sure? For coding, see Claude Code; for desktop chat, see Cherry Studio; for anything else, see [General Access](/en/tools/general-access).
+
+    <CardGroup cols={2}>
+      <Card title="Claude Code" icon="terminal" href="/en/tools/claude-code">
+        Anthropic's AI coding agent
+      </Card>
+      <Card title="Codex" icon="terminal" href="/en/tools/codex">
+        OpenAI's AI coding agent
+      </Card>
+      <Card title="Cherry Studio" icon="comments" href="/en/tools/cherry-studio">
+        Cross-platform desktop AI chat client
+      </Card>
+      <Card title="General Access" icon="plug" href="/en/tools/general-access">
+        Any tool with a custom API URL
+      </Card>
+    </CardGroup>
+  </Step>
+
+  <Step title="Verify it works">
+    After configuring, run this to confirm you get a valid response (replace `sk-YOUR-KEY` with your Key):
+
+    ```bash
+    curl https://ruoli.dev/v1/chat/completions \
+      -H "Authorization: Bearer sk-YOUR-KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "model": "claude-sonnet-4-20250514",
+        "messages": [{"role": "user", "content": "hi"}]
+      }'
+    ```
+
+    If the returned JSON contains reply text, you're connected. If you hit an error, check the [FAQ](/en/platform/faq).
+  </Step>
+</Steps>

@@ -6,7 +6,7 @@
     "family": "Noto Sans SC",
     "heading": {
       "family": "Noto Serif SC",
-      "weight": 600
+      "weight": 400
     },
     "body": {
       "family": "Noto Sans SC",
@@ -33,30 +33,38 @@
                 "icon": "rocket",
                 "pages": [
                   "index",
-                  "quickstart"
+                  "quickstart",
+                  "platform/faq"
                 ]
               },
               {
                 "group": "平台使用",
                 "icon": "desktop",
                 "pages": [
-                  "platform/models-and-groups",
                   "platform/billing",
-                  "platform/gpt-image-2",
-                  "platform/faq"
+                  "platform/models-and-groups",
+                  {
+                    "group": "接入配置",
+                    "icon": "screwdriver-wrench",
+                    "expanded": false,
+                    "pages": [
+                      "tools/general-access",
+                      "tools/claude-code",
+                      "tools/codex",
+                      "tools/cherry-studio",
+                      "tools/cc-switch"
+                    ]
+                  }
                 ]
               },
               {
-                "group": "配置工具",
-                "icon": "screwdriver-wrench",
+                "group": "服务条款",
+                "icon": "file-contract",
                 "pages": [
-                  "tools/cc-switch",
-                  "tools/claude-code",
-                  "tools/codex",
-                  "tools/gemini-cli",
-                  "tools/opencode",
-                  "tools/openclaw",
-                  "tools/cherry-studio"
+                  "legal/terms",
+                  "legal/aup",
+                  "legal/service-specific-terms",
+                  "legal/supported-regions"
                 ]
               }
             ]
@@ -74,30 +82,38 @@
                 "icon": "rocket",
                 "pages": [
                   "en/index",
-                  "en/quickstart"
+                  "en/quickstart",
+                  "en/platform/faq"
                 ]
               },
               {
                 "group": "Platform",
                 "icon": "desktop",
                 "pages": [
-                  "en/platform/models-and-groups",
                   "en/platform/billing",
-                  "en/platform/gpt-image-2",
-                  "en/platform/faq"
+                  "en/platform/models-and-groups",
+                  {
+                    "group": "Access & Setup",
+                    "icon": "screwdriver-wrench",
+                    "expanded": false,
+                    "pages": [
+                      "en/tools/general-access",
+                      "en/tools/claude-code",
+                      "en/tools/codex",
+                      "en/tools/cherry-studio",
+                      "en/tools/cc-switch"
+                    ]
+                  }
                 ]
               },
               {
-                "group": "Configure Tools",
-                "icon": "screwdriver-wrench",
+                "group": "Terms of Service",
+                "icon": "file-contract",
                 "pages": [
-                  "en/tools/cc-switch",
-                  "en/tools/claude-code",
-                  "en/tools/codex",
-                  "en/tools/gemini-cli",
-                  "en/tools/opencode",
-                  "en/tools/openclaw",
-                  "en/tools/cherry-studio"
+                  "en/legal/terms",
+                  "en/legal/aup",
+                  "en/legal/service-specific-terms",
+                  "en/legal/supported-regions"
                 ]
               }
             ]

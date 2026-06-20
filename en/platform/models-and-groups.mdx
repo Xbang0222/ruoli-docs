@@ -1,66 +1,62 @@
 ---
 title: "Models & Groups"
-description: "Learn about ruoli's model groups and pricing multipliers"
+description: "Marketplace and groups in plain language — read before creating a token"
 ---
 
-## What Are Groups
+The two words that confuse first-timers most are model marketplace and groups. This page explains both as if you've never seen them before.
 
-ruoli uses **groups** to organize different model channels. Each group corresponds to a different upstream API source with its own pricing multiplier.
+## What Is the Model Marketplace
 
-When creating a token, you need to select a group. The group determines the **pricing** and **available channels** for your API calls.
+Think of ruoli as a "supermarket for AI models."
 
-<Frame>
-  <img src="/images/token-groups.png" alt="Token Group Selection" />
-</Frame>
+Lots of companies build large AI models — Anthropic's Claude, OpenAI's GPT, Google's Gemini, and various domestic Chinese models. Normally you'd sign up, top up, and configure each one separately — a hassle. ruoli puts them all on one shelf: with a single account and one API Key, you can call all of them.
 
-## Group List
+That shelf is the [model marketplace](https://ruoli.dev/pricing). Open it and you can see:
 
-| Group | Multiplier | Description |
+- Which models are available right now
+- How much each one costs
+
+<Info>
+**Prices are not fixed.** Just as grocery prices float with supply costs, the same model can cost differently across times and channels. So treat the marketplace price as authoritative — this doc doesn't hardcode amounts.
+</Info>
+
+## What Is a Group
+
+This is the concept people stumble on most, but it's actually simple.
+
+Back to the supermarket. For the same item (say, a bottle of cola), a store might buy from several suppliers:
+
+- Supplier A: cheap, but occasionally out of stock
+- Supplier B: a bit pricier, but reliable supply
+- Supplier C: throws in a freebie
+
+AI models work the same way. For the same model (say Claude), ruoli connects several different supply channels behind the scenes — some cheaper, some more stable, some with better "caching" (repeated content costs less).
+
+ruoli bundles these channels by source, and each bundle is a group.
+
+When you create an API Key (token), you pick one group — like choosing which supply channel to use. That choice decides three things:
+
+1. Which models you can call
+2. Whether it's cheap or expensive
+3. How stable the channel is
+
+Each group also carries a multiplier, a discount factor — lower means cheaper. A multiplier of 0.3 is roughly 30% of the base price.
+
+<Warning>
+**Picking a group is the most common beginner mistake.** If the group you chose doesn't include the model you want, calls fail immediately with "no available channel" or "model not found."
+
+So before creating a token, check the [marketplace](https://ruoli.dev/pricing): which group is your model in?
+</Warning>
+
+## Two Examples
+
+There are many groups; here are two common ones to give you a feel. The full list and live prices are in the [marketplace](https://ruoli.dev/pricing):
+
+| Group | Multiplier | When to use |
 |-------|------------|-------------|
-| `cn` | **0.01** | Domestic Chinese models |
-| `gemini-ant` | **0.2** | Antigravity's Gemini 2api, 1M context |
-| `gemini-officially` | **1** | Gemini official API |
-| `claude-officially` | **1.6** | Anthropic official Max |
-| `claude-ant` | **0.6** | Antigravity's Claude 2api, 1M context |
-| `codex-team` | **0.2** | Codex official API, 1M context, supports [gpt-image-2](/en/platform/gpt-image-2) image generation |
-| `claude-kiro` | **0.5** | Kiro's Claude 2api, 1M context |
+| `cn` | 0.8 | Domestic Chinese models |
+| `gpt-pro` | 0.3 | GPT / Codex coding, want stability |
 
-## How to Choose a Group
+## Got It Wrong / Want to Switch
 
-<AccordionGroup>
-  <Accordion title="Looking for the lowest price" icon="coins">
-    Choose `cn` (0.01) — domestic Chinese models, great for everyday use, learning, and testing.
-  </Accordion>
-  <Accordion title="Need a large context window" icon="maximize">
-    Choose groups with **1M context**: `gemini-ant` (0.2), `codex-team` (0.2), `claude-kiro` (0.5), or `claude-ant` (0.6). Best for working with large codebases.
-  </Accordion>
-  <Accordion title="Need official-grade quality" icon="shield-check">
-    Choose `claude-officially` (1.6) or `gemini-officially` (1). Direct connection to the official API — highest stability and quality, but also the highest price.
-  </Accordion>
-  <Accordion title="Using Codex for coding" icon="terminal">
-    Choose `codex-team` (0.2). A channel optimized for Codex.
-  </Accordion>
-</AccordionGroup>
-
-## What Does Multiplier Mean
-
-The multiplier is a pricing coefficient applied on top of the model's official price. **The lower the multiplier, the cheaper it is.**
-
-Actual cost = **Model official price x Group multiplier**
-
-For example, if a model's official price is 10 yuan per million tokens:
-- Using `claude-officially` (multiplier 1.6): cost = 10 x 1.6 = **16 yuan**
-- Using `claude-ant` (multiplier 0.6): cost = 10 x 0.6 = **6 yuan**
-- Using `cn` (multiplier 0.01): cost = 10 x 0.01 = **0.1 yuan**
-
-Different models have different official prices within the same group, so the final cost varies. See [Billing & Top-Up](/en/platform/billing) for details.
-
-On the [pricing page](https://ruoli.dev/pricing) you can view the specific price for each model under different groups:
-
-<Frame>
-  <img src="/images/model-pricing.png" alt="Model Pricing" />
-</Frame>
-
-## How to Switch Groups
-
-Groups are bound to **tokens**. To switch groups, simply create a new token and select a different group.
+A group is bound to a token and can't be changed after creation. To switch, just create a new token with a different group — keep or delete the old one.

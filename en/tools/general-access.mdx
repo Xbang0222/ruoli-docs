@@ -1,0 +1,64 @@
+---
+title: "General Access"
+description: "Connect any compatible tool to ruoli with one recipe"
+---
+
+ruoli is compatible with the API protocols of mainstream large models. As long as your tool lets you set a custom API URL and Key, it works — including tools not listed individually in these docs.
+
+You only need two things:
+
+| Item | Value |
+|------|-------|
+| API Key | Create and copy it on the **Tokens** page in the [ruoli.dev](https://ruoli.dev) console |
+| API URL | See "Two URL Formats" below |
+
+Authentication is always: `Authorization: Bearer sk-YOUR-KEY`.
+
+## Two URL Formats (Important)
+
+ruoli supports two access protocols, and **the URL differs** — using the wrong one will fail to connect:
+
+| Protocol | API URL | Typical tools |
+|----------|---------|---------------|
+| **OpenAI-compatible** (Chat Completions / Responses) | `https://ruoli.dev/v1` | Codex, Cherry Studio, and most OpenAI-compatible tools |
+| **Native** (Anthropic / Gemini, etc.) | `https://ruoli.dev` (**without** `/v1`) | Claude Code (Anthropic), Gemini CLI (Gemini) |
+
+<Warning>
+Rule of thumb: if the tool asks for an **OpenAI / OpenAI-compatible** URL, use `https://ruoli.dev/v1`; if it asks for a **native vendor** URL (Anthropic, Gemini, etc.), use `https://ruoli.dev` (without `/v1`).
+
+These native SDKs build the path themselves, so an extra `/v1` will break the request.
+</Warning>
+
+## Universal Configuration Example
+
+For most OpenAI-compatible tools, these three fields are all you need:
+
+| Field | Value |
+|-------|-------|
+| Provider | Custom, e.g. `ruoli` |
+| Base URL | `https://ruoli.dev/v1` |
+| API Key | `sk-YOUR-KEY` |
+
+Then enter the model name you want (e.g. `claude-sonnet-4-20250514`, `gpt-4o`) and you're ready to go.
+
+## Verify the Connection
+
+After configuring, run the command below to confirm you get a valid response (OpenAI-compatible format):
+
+```bash
+curl https://ruoli.dev/v1/chat/completions \
+  -H "Authorization: Bearer sk-YOUR-KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-20250514",
+    "messages": [{"role": "user", "content": "hi"}]
+  }'
+```
+
+If you get back JSON containing a `content` text field, you're connected. For common errors, see the [FAQ](/en/platform/faq).
+
+<Info>
+**Dedicated pages for popular tools**: [Claude Code](/en/tools/claude-code) · [Codex](/en/tools/codex) · [Cherry Studio](/en/tools/cherry-studio).
+
+Need to manage connections for multiple CLI tools at once? Use the [CC Switch](/en/tools/cc-switch) setup helper.
+</Info>

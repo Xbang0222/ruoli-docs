@@ -4,53 +4,6 @@ description: "Frequently asked questions about using ruoli"
 ---
 
 <AccordionGroup>
-  <Accordion title="Balance is sufficient but getting 'insufficient quota'?">
-    **Token quota** and **account balance** are separate. Each token has its own usage limit — even if your account balance is sufficient, you'll get an error when the token quota is exhausted.
-
-    Solution: Edit the token in the console to increase the quota or enable "unlimited quota".
-  </Accordion>
-
-  <Accordion title="Getting 'no available channels'?">
-    The model you requested is not in the current token's group, or all channels in that group are unavailable.
-
-    Solution: Create a new token with a group that includes the model, or try a different model.
-  </Accordion>
-
-  <Accordion title="Which group should I choose?">
-    - To save money: `cn` (0.01)
-    - For large context: `gemini-ant` (0.2, 1M), `codex-team` (0.2, 1M), or `claude-ant` (0.6, 1M)
-    - For official quality: `claude-officially` (1.6) or `gemini-officially` (1)
-
-    See [Models & Groups](/en/platform/models-and-groups) for details.
-  </Accordion>
-
-  <Accordion title="Request returning 401 error?">
-    - Check that the API Key is correct (watch for leading/trailing spaces)
-    - Confirm the Key hasn't been deleted or disabled
-    - Confirm the request header format: `Authorization: Bearer sk-YOUR-KEY`
-  </Accordion>
-
-  <Accordion title="What does 'multiplier' mean?">
-    The multiplier is a pricing coefficient — the lower the multiplier, the cheaper it is. For example, a multiplier of 0.1 means you pay only one-tenth of the official price. See [Models & Groups](/en/platform/models-and-groups) for details.
-  </Accordion>
-
-  <Accordion title="Which tools are supported?">
-    ruoli is compatible with the OpenAI API format and supports all OpenAI-compatible tools, including:
-    - [Claude Code](/en/tools/claude-code)
-    - [Codex](/en/tools/codex)
-    - [Gemini CLI](/en/tools/gemini-cli)
-    - [OpenCode](/en/tools/opencode)
-    - [OpenClaw](/en/tools/openclaw)
-    - [Cherry Studio](/en/tools/cherry-studio)
-    - And any other OpenAI API-compatible tools
-  </Accordion>
-
-  <Accordion title="How do I switch models in Claude Code?">
-    To use third-party models like `gpt-5.5`, GLM, or Kimi, open **CC Switch → Edit Provider → Model Mapping** and point each Claude alias at the target model — no JSON editing needed.
-
-    See [Switch Models in Claude Code](/en/tools/claude-code#switch-models) for details.
-  </Accordion>
-
   <Accordion title="Low cache hit rate or unexpectedly high cost in Claude Code?">
     It's almost always the default attribution header — every request carries a dynamic session ID that blows out the upstream prompt cache.
 
@@ -61,22 +14,5 @@ description: "Frequently asked questions about using ruoli"
     ```
 
     Recommended whether you're on native Claude or a third-party model. See [Disable Attribution Header](/en/tools/claude-code#disable-attribution-header-required) for details.
-  </Accordion>
-
-  <Accordion title="Getting 'context length exceeded' error?">
-    This usually means the conversation context has exceeded the model's context window limit.
-
-    Solutions:
-    - Use the `/compact` command in Claude Code to manually compress context
-    - Configure auto-compression: add `"CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50"` to the `env` block in `~/.claude/settings.json` — lower values trigger compression earlier
-    - Choose a group with larger context support, such as `claude-ant` (1M context) or `codex-team` (1M context)
-
-    See [Claude Code context compression](/en/tools/claude-code#configure-context-compression) for details.
-  </Accordion>
-
-  <Accordion title="What is the API URL?">
-    Unified URL: `https://ruoli.dev/v1`
-
-    The exact format varies slightly by tool — see each tool's configuration page for details.
   </Accordion>
 </AccordionGroup>

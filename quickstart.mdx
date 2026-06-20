@@ -1,49 +1,71 @@
 ---
 title: "快速开始"
-description: "注册账号、获取 API Key，5 分钟上手"
+description: "从注册到第一次成功调用，按这 6 步走"
 ---
 
-## 第 1 步：注册账号
+第一次用 ruoli，照这条线走一遍就能跑通。每一步都不复杂，关键是第 3 步选对分组——这是新手最容易卡住的地方。
 
-前往 [ruoli.dev](https://ruoli.dev) 注册你的账号并登录。
+<Steps>
+  <Step title="注册账号">
+    前往 [ruoli.dev](https://ruoli.dev) 注册并登录。支持 QQ 邮箱和 Gmail 注册。
+  </Step>
 
-## 第 2 步：创建 API Key（令牌）
+  <Step title="充值额度">
+    进入控制台的 **钱包** 页面，输入金额充值；也可以用兑换码到账。
 
-1. 进入控制台，点击 **令牌** 页面
-2. 点击 **添加令牌**
-3. 填写令牌名称
-4. 选择**分组**（决定价格倍率，详见[模型与分组](/platform/models-and-groups)）
-5. 按需选择可用模型（留空 = 全部模型）
-6. 点击 **创建**，复制生成的 API Key
+    按实际 token 用量扣费，先充一点试用即可。详见[充值与计费](/platform/billing)。
+  </Step>
 
-## 第 3 步：选择你的工具
+  <Step title="先看模型广场，想好用哪个分组（关键）">
+    打开[模型广场](https://ruoli.dev/pricing)，确认：你想用的模型在哪个分组、价格多少。
 
-根据你使用的工具，查看对应的配置指南：
+    分组直接决定你能调用哪些模型，选错分组创建的令牌，调用时会报「没有可用渠道」。所以先看一眼再建令牌。
 
-### 编码代理
+    不想细究的话：用 GPT / Codex 编码就选 `gpt-pro`，想用国产大模型就选 `cn`。其他分组和实时价格都在模型广场看，详见[模型与分组](/platform/models-and-groups)。
+  </Step>
 
-<CardGroup cols={2}>
-  <Card title="Claude Code" icon="terminal" href="/tools/claude-code">
-    Anthropic 的 AI 编码代理
-  </Card>
-  <Card title="Codex" icon="terminal" href="/tools/codex">
-    OpenAI 的 AI 编码代理
-  </Card>
-  <Card title="Gemini CLI" icon="terminal" href="/tools/gemini-cli">
-    Google 的 AI 编码代理
-  </Card>
-  <Card title="OpenCode" icon="terminal" href="/tools/opencode">
-    开源 AI 编码代理
-  </Card>
-  <Card title="OpenClaw" icon="terminal" href="/tools/openclaw">
-    开源个人 AI 助手
-  </Card>
-</CardGroup>
+  <Step title="创建 API Key（令牌）">
+    1. 控制台进入 **令牌** 页，点 **添加令牌**
+    2. 填令牌名称
+    3. **选分组**（就是上一步想好的那个）
+    4. 可用模型按需选，留空 = 全部
+    5. 点 **创建**，复制 API Key
 
-### 聊天客户端
+    <Warning>API Key 只显示一次，请立刻保存。丢失需重建。</Warning>
+  </Step>
 
-<CardGroup cols={1}>
-  <Card title="Cherry Studio" icon="comments" href="/tools/cherry-studio">
-    跨平台桌面 AI 聊天客户端
-  </Card>
-</CardGroup>
+  <Step title="配置你的工具">
+    选你在用的工具，照它的页面配置。不确定？编码看 Claude Code，桌面聊天看 Cherry Studio，其他工具看[通用接入](/tools/general-access)。
+
+    <CardGroup cols={2}>
+      <Card title="Claude Code" icon="terminal" href="/tools/claude-code">
+        Anthropic 的 AI 编码代理
+      </Card>
+      <Card title="Codex" icon="terminal" href="/tools/codex">
+        OpenAI 的 AI 编码代理
+      </Card>
+      <Card title="Cherry Studio" icon="comments" href="/tools/cherry-studio">
+        跨平台桌面 AI 聊天客户端
+      </Card>
+      <Card title="通用接入" icon="plug" href="/tools/general-access">
+        任意支持自定义 API 地址的工具
+      </Card>
+    </CardGroup>
+  </Step>
+
+  <Step title="验证是否成功">
+    配置完，跑这条命令确认能正常返回（把 `sk-你的KEY` 换成你的 Key）：
+
+    ```bash
+    curl https://ruoli.dev/v1/chat/completions \
+      -H "Authorization: Bearer sk-你的KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "model": "claude-sonnet-4-20250514",
+        "messages": [{"role": "user", "content": "hi"}]
+      }'
+    ```
+
+    返回的 JSON 里有回复文本就说明接通了。报错就对照[常见问题](/platform/faq)排查。
+  </Step>
+</Steps>

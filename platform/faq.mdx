@@ -4,53 +4,6 @@ description: "ruoli 使用中的常见问题"
 ---
 
 <AccordionGroup>
-  <Accordion title="余额充足但提示「额度不足」？">
-    **令牌额度**和**账户余额**是分开的。每个令牌有自己的使用上限，即使账户余额充足，令牌额度用完了也会报错。
-
-    解决方法：在控制台编辑令牌，增加额度或开启「无限额度」。
-  </Accordion>
-
-  <Accordion title="提示「没有可用渠道」？">
-    你请求的模型不在当前令牌的分组内，或该分组的所有渠道都不可用。
-
-    解决方法：换一个包含该模型的分组创建新令牌，或换一个模型试试。
-  </Accordion>
-
-  <Accordion title="应该选哪个分组？">
-    - 想省钱：`cn`（0.01）
-    - 要大上下文：`gemini-ant`（0.2，1M）、`codex-team`（0.2，1M）或 `claude-ant`（0.6，1M）
-    - 要官方质量：`claude-officially`（1.6）或 `gemini-officially`（1）
-
-    详见[模型与分组](/platform/models-and-groups)。
-  </Accordion>
-
-  <Accordion title="请求返回 401 错误？">
-    - 检查 API Key 是否正确（注意前后空格）
-    - 确认 Key 没有被删除或禁用
-    - 确认请求头格式：`Authorization: Bearer sk-你的KEY`
-  </Accordion>
-
-  <Accordion title="倍率是什么意思？">
-    倍率是价格系数，倍率越低越便宜。例如倍率 0.1 意味着只需官方价格的十分之一。详见[模型与分组](/platform/models-and-groups)。
-  </Accordion>
-
-  <Accordion title="支持哪些工具？">
-    ruoli 兼容 OpenAI API 格式，支持所有兼容 OpenAI 的工具，包括：
-    - [Claude Code](/tools/claude-code)
-    - [Codex](/tools/codex)
-    - [Gemini CLI](/tools/gemini-cli)
-    - [OpenCode](/tools/opencode)
-    - [OpenClaw](/tools/openclaw)
-    - [Cherry Studio](/tools/cherry-studio)
-    - 以及其他兼容 OpenAI API 的工具
-  </Accordion>
-
-  <Accordion title="Claude Code 里怎么切换模型？">
-    想用 `gpt-5.5`、GLM、Kimi 等第三方模型，在 CC Switch 的「编辑供应商 → 模型映射」里，把 Claude 别名指向目标模型即可，无需改 JSON。
-
-    详见 [Claude Code 切换模型](/tools/claude-code#切换模型)。
-  </Accordion>
-
   <Accordion title="Claude Code 缓存命中率低、费用偏高？">
     八成是 Claude Code 默认开启的归属 header 在作祟 —— 每次请求携带动态会话 ID，会直接击穿上游 prompt cache。
 
@@ -61,22 +14,5 @@ description: "ruoli 使用中的常见问题"
     ```
 
     不论用 Claude 官方还是第三方模型都建议关闭。详见 [关闭归属 Header](/tools/claude-code#关闭归属-header)。
-  </Accordion>
-
-  <Accordion title="提示「上下文长度过大」怎么办？">
-    这通常是因为对话上下文超过了模型的上下文窗口限制。
-
-    解决方法：
-    - 在 Claude Code 中使用 `/compact` 命令手动压缩上下文
-    - 配置自动压缩：在 `~/.claude/settings.json` 的 `env` 中添加 `"CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50"`，数值越小越早触发压缩
-    - 选择支持更大上下文的分组，如 `claude-ant`（1M 上下文）或 `codex-team`（1M 上下文）
-
-    详见 [Claude Code 配置上下文压缩](/tools/claude-code#配置上下文压缩)。
-  </Accordion>
-
-  <Accordion title="API 地址是什么？">
-    统一地址：`https://ruoli.dev/v1`
-
-    不同工具填写方式略有不同，具体请看各工具的配置页面。
   </Accordion>
 </AccordionGroup>

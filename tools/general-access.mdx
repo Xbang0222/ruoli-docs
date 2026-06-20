@@ -1,0 +1,64 @@
+---
+title: "通用接入"
+description: "任意兼容工具都能照这套方法接入 ruoli"
+---
+
+ruoli 兼容主流大模型的 API 协议。只要你的工具支持自定义 API 地址和 Key，就能接入 —— 不在本文档单独列出的工具也一样。
+
+只需要两样东西：
+
+| 项目 | 值 |
+|------|-----|
+| API Key | 在 [ruoli.dev](https://ruoli.dev) 控制台「令牌」页创建并复制 |
+| API 地址 | 见下方「两种地址格式」 |
+
+认证方式统一为：`Authorization: Bearer sk-你的KEY`。
+
+## 两种地址格式（关键）
+
+ruoli 同时支持两套接入协议，**地址不一样**，填错会直接连不上：
+
+| 协议格式 | API 地址 | 典型工具 |
+|---------|---------|---------|
+| **OpenAI 兼容**（Chat Completions / Responses） | `https://ruoli.dev/v1` | Codex、Cherry Studio，以及绝大多数兼容 OpenAI 的工具 |
+| **原生格式**（Anthropic / Gemini 等） | `https://ruoli.dev`（**不带** `/v1`） | Claude Code（Anthropic）、Gemini CLI（Gemini） |
+
+<Warning>
+判断方法：如果工具让你填的是 **OpenAI / OpenAI 兼容** 地址，用 `https://ruoli.dev/v1`；如果填的是 **Anthropic、Gemini 等原生厂商** 地址，用 `https://ruoli.dev`（不带 `/v1`）。
+
+这些原生协议的 SDK 会自己拼接路径，多写一个 `/v1` 反而会出错。
+</Warning>
+
+## 通用配置示例
+
+大多数兼容 OpenAI 的工具，填这三项即可：
+
+| 字段 | 填写内容 |
+|------|---------|
+| 提供商 / Provider | 自定义，如 `ruoli` |
+| API 地址 / Base URL | `https://ruoli.dev/v1` |
+| API Key | `sk-你的KEY` |
+
+然后填入你想用的模型名（如 `claude-sonnet-4-20250514`、`gpt-4o`），即可开始使用。
+
+## 验证是否接通
+
+配置完成后，用下面这条命令确认能正常返回（OpenAI 兼容格式）：
+
+```bash
+curl https://ruoli.dev/v1/chat/completions \
+  -H "Authorization: Bearer sk-你的KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-20250514",
+    "messages": [{"role": "user", "content": "hi"}]
+  }'
+```
+
+返回一段 JSON、其中有 `content` 文本，就说明接通了。常见报错见 [常见问题](/platform/faq)。
+
+<Info>
+**已为常用工具准备了专页**：[Claude Code](/tools/claude-code) · [Codex](/tools/codex) · [Cherry Studio](/tools/cherry-studio)。
+
+想批量管理多个 CLI 工具的连接？用 [CC Switch](/tools/cc-switch) 配置助手一键搞定。
+</Info>
