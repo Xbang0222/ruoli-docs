@@ -1,6 +1,6 @@
 ---
 title: "Codex"
-description: "Configure RuoLi in OpenAI Codex CLI"
+description: "Configure ruoli in OpenAI Codex CLI"
 ---
 
 [Codex](https://github.com/openai/codex) is an AI coding agent by OpenAI that runs in the terminal.
@@ -13,7 +13,7 @@ npm install -g @openai/codex
 
 ## Configure with CC Switch (Recommended)
 
-Open [CC Switch](https://ccswitch.lovable.app) and add a RuoLi configuration:
+Open [CC Switch](https://ccswitch.lovable.app) and add a ruoli configuration:
 
 | Field | Value |
 |-------|-------|
@@ -31,16 +31,16 @@ model = "claude-sonnet-4-20250514"
 model_provider = "ruoli"
 
 [model_providers.ruoli]
-name = "RuoLi"
+name = "ruoli"
 base_url = "https://ruoli.dev/v1"
-env_key = "RUOLI_API_KEY"
+env_key = "ruoli_API_KEY"
 wire_api = "responses"
 ```
 
 Set the environment variable:
 
 ```bash
-export RUOLI_API_KEY=sk-YOUR-KEY
+export ruoli_API_KEY=sk-YOUR-KEY
 ```
 
 ## Switch Models

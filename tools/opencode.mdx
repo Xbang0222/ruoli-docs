@@ -1,6 +1,6 @@
 ---
 title: "OpenCode"
-description: "在 OpenCode 中配置 RuoLi"
+description: "在 OpenCode 中配置 ruoli"
 ---
 
 [OpenCode](https://opencode.ai) 是一个开源的 AI 编码代理，支持 75+ 模型提供商。
@@ -50,10 +50,10 @@ brew install anomalyco/tap/opencode
   "provider": {
     "ruoli": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "RuoLi",
+      "name": "ruoli",
       "options": {
         "baseURL": "https://ruoli.dev/v1",
-        "apiKey": "{env:RUOLI_API_KEY}"
+        "apiKey": "{env:ruoli_API_KEY}"
       },
       "models": {
         "claude-sonnet-4-20250514": {
@@ -73,7 +73,7 @@ brew install anomalyco/tap/opencode
 设置环境变量：
 
 ```bash
-export RUOLI_API_KEY=sk-你的KEY
+export ruoli_API_KEY=sk-你的KEY
 ```
 
 ## 切换模型

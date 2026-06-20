@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="logo/dark.png" alt="RuoLi" height="60" />
+  <img src="logo/dark.png" alt="ruoli" height="60" />
 </p>
 
 <p align="center">
-  <strong>RuoLi 文档</strong> — AI 模型 API 中转平台文档站
+  <strong>ruoli 文档</strong> — AI 模型 API 中转平台文档站
 </p>
 
 <p align="center">
@@ -16,9 +16,9 @@
 
 ## 关于
 
-[RuoLi](https://ruoli.dev) 是一个统一的 AI 模型 API 中转平台。一个 API Key，通过 OpenAI 兼容接口访问 Claude、GPT、Gemini、Deepseek 等主流大模型。
+[ruoli](https://ruoli.dev) 是一个统一的 AI 模型 API 中转平台。一个 API Key，通过 OpenAI 兼容接口访问 Claude、GPT、Gemini、Deepseek 等主流大模型。
 
-本仓库是 RuoLi 的文档站源码，基于 [Mintlify](https://mintlify.com) 构建，支持中英双语。
+本仓库是 ruoli 的文档站源码，基于 [Mintlify](https://mintlify.com) 构建，支持中英双语。
 
 ## 文档内容
 

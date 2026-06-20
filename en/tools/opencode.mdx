@@ -1,6 +1,6 @@
 ---
 title: "OpenCode"
-description: "Configure RuoLi in OpenCode"
+description: "Configure ruoli in OpenCode"
 ---
 
 [OpenCode](https://opencode.ai) is an open-source AI coding agent that supports 75+ model providers.
@@ -21,7 +21,7 @@ brew install anomalyco/tap/opencode
 
 ## Configure with CC Switch (Recommended)
 
-Open [CC Switch](https://ccswitch.lovable.app) and add a RuoLi configuration:
+Open [CC Switch](https://ccswitch.lovable.app) and add a ruoli configuration:
 
 | Field | Value |
 |-------|-------|
@@ -41,10 +41,10 @@ Create `opencode.json`:
   "provider": {
     "ruoli": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "RuoLi",
+      "name": "ruoli",
       "options": {
         "baseURL": "https://ruoli.dev/v1",
-        "apiKey": "{env:RUOLI_API_KEY}"
+        "apiKey": "{env:ruoli_API_KEY}"
       },
       "models": {
         "claude-sonnet-4-20250514": {
@@ -64,7 +64,7 @@ Create `opencode.json`:
 Set the environment variable:
 
 ```bash
-export RUOLI_API_KEY=sk-YOUR-KEY
+export ruoli_API_KEY=sk-YOUR-KEY
 ```
 
 ## Switch Models
